@@ -44,7 +44,7 @@
     var h=location.hash||'';
     var m=h.match(/#d=([A-Za-z0-9\-_]+)/);
     if(!m) throw 0;
-    var b64=m[1].replace(/-/g,'+').replace(/_/g,'/');
+    var b64=m[1].replace(/-/g,'+').replace(/_/g,'/');while(b64.length%4)b64+='=';
     var data=JSON.parse(decodeURIComponent(escape(atob(b64))));
     if(data.n) document.getElementById('biz').textContent=data.n;
     document.title='Catálogo de '+(data.n||'Nuvora');
