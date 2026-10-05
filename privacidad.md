@@ -1,6 +1,6 @@
 # Política de Privacidad de Nuvora
 
-**Última actualización: octubre de 2026 — versión 3.2.0**
+**Última actualización: octubre de 2026 — versión 5.0.9**
 
 Nuvora ("la aplicación") es una herramienta de finanzas personales y de negocio. Esta política explica qué datos utiliza, dónde se guardan, cuándo salen de tu dispositivo y qué derechos tienes.
 
@@ -13,8 +13,10 @@ Nuvora funciona con los datos que tú introduces voluntariamente:
 - **Datos de compra:** si adquieres la suscripción Premium, la transacción la procesa Google Play; Nuvora solo recibe el estado de tu suscripción (activa o no), nunca tus datos de pago.
 - **Fotos del catálogo (opcionales):** si usas el catálogo de WhatsApp del módulo Emprendedor, puedes elegir fotos de tu galería para tus productos. Las fotos se guardan únicamente en tu teléfono, no se suben a ningún servidor (tampoco a la nube de respaldo) y solo salen del dispositivo cuando tú decides compartirlas por WhatsApp.
 - **Texto del comando inteligente:** la función "Escríbelo y Nuvora lo registra" interpreta lo que escribes directamente en tu dispositivo para crear el movimiento; ese texto no se envía a ningún servidor.
+- **Voz del comando "Dilo y listo" (opcional):** si usas el micrófono para dictar un movimiento, el audio se convierte en texto mediante el **servicio de reconocimiento de voz de tu teléfono** (SpeechRecognizer de Android, operado por Google). Nuvora no graba, almacena ni sube tu audio a ningún servidor propio; solo conserva en tu dispositivo el texto resultante para crear el movimiento. El permiso de micrófono se usa exclusivamente cuando tú tocas el botón del micrófono, y puedes usar la app entera sin concederlo.
+- **Enlace del catálogo web (opcional):** si compartes tu catálogo con el enlace de nuvora-ve.github.io/catalogo, los nombres, precios y detalles de tus productos viajan **codificados dentro del propio enlace**. No se guardan en ningún servidor: la página (alojada en GitHub Pages) solo los lee del enlace para mostrarlos. Ten en cuenta que **cualquier persona con el enlace puede ver esos datos**, por eso compártelo solo con tus clientes.
 
-Nuvora **no** recopila ubicación, contactos ni datos de uso analítico. Las fotos del catálogo y los archivos que exportas permanecen en tu dispositivo y no se transmiten a nuestros servidores (ver sección 1). El **identificador de publicidad** solo lo gestiona Google AdMob para los anuncios de la versión gratuita (ver sección 4); Nuvora no lo lee ni lo almacena.
+Nuvora **no** recopila ubicación, contactos ni datos de uso analítico, y el micrófono solo se activa cuando tú tocas el botón de dictado. Las fotos del catálogo y los archivos que exportas permanecen en tu dispositivo y no se transmiten a nuestros servidores (ver sección 1). El **identificador de publicidad** solo lo gestiona Google AdMob para los anuncios de la versión gratuita (ver sección 4); Nuvora no lo lee ni lo almacena.
 
 ## 2. Dónde se guardan tus datos
 
@@ -29,6 +31,8 @@ Nuvora **no** recopila ubicación, contactos ni datos de uso analítico. Las fot
 - **Google Play Billing** — Suscripción Premium. Recibe: gestión de la compra (la procesa Google).
 - **Google AdMob** — Anuncios en la versión gratuita. Recibe: identificador de publicidad e interacción con anuncios.
 - **APIs públicas de tasas (DolarApi, Binance P2P, ER-API)** — Tasas de cambio BCV, paralelo, USDT y divisas. No reciben ningún dato personal; solo consultas de tasas.
+- **Reconocimiento de voz de Android (Google)** — Convertir tu voz en texto en "Dilo y listo". Recibe: el audio dictado, solo mientras dura el dictado; Nuvora no lo almacena.
+- **GitHub Pages (nuvora-ve.github.io)** — Mostrar el catálogo que compartes por enlace. No recibe datos en reposo: los datos viajan dentro del enlace; GitHub solo sirve la página (registra registros técnicos estándar de acceso web).
 - **WhatsApp (solo si tú compartes)** — Enviar catálogo, cobros o recibos a tus contactos. Recibe: solo lo que tú eliges compartir manualmente; Nuvora no envía nada por su cuenta.
 
 ## 4. Anuncios (solo en la versión gratuita)
