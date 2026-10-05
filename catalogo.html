@@ -14,6 +14,7 @@
   .sub{color:#8EA3C8;font-size:13px;margin-top:6px}
   .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
   .prod{background:rgba(8,16,34,.75);border:1px solid rgba(90,170,255,.20);border-radius:16px;padding:14px;backdrop-filter:blur(8px)}
+  .prod .phf{width:100%;height:120px;object-fit:cover;border-radius:12px;margin-bottom:10px;background:#0a1428}
   .prod .ph{height:74px;border-radius:12px;background:linear-gradient(135deg,rgba(44,229,155,.14),rgba(77,166,255,.14));display:flex;align-items:center;justify-content:center;font-size:30px;margin-bottom:10px}
   .prod .nm{font-weight:800;font-size:14px}
   .prod .pr{color:#2CE59B;font-weight:900;font-size:16px;margin-top:3px}
@@ -51,7 +52,9 @@
     var items=data.p||[];
     if(!items.length) throw 0;
     grid.innerHTML=items.map(function(it){
-      return '<div class="prod"><div class="ph">🛍️</div>'+
+      var foto=(it[3]&&/^https:\/\//.test(it[3]))?it[3]:'';
+      return '<div class="prod">'+
+        (foto?'<img class="phf" src="'+foto+'" alt="" loading="lazy">':'<div class="ph">🛍️</div>')+
         '<div class="nm"></div><div class="pr"></div>'+
         (it[2]?'<div class="dt"></div>':'')+'</div>';
     }).join('');
