@@ -1,8 +1,10 @@
 # Política de Privacidad de Nuvora
 
-**Última actualización: octubre de 2026 — versión 5.0.9**
+**Última actualización: octubre de 2026 — versión 5.1.0**
 
 Nuvora ("la aplicación") es una herramienta de finanzas personales y de negocio. Esta política explica qué datos utiliza, dónde se guardan, cuándo salen de tu dispositivo y qué derechos tienes.
+
+> **Principio rector de Nuvora: tus datos viven en tu teléfono.** La nube es opcional y solo se activa si tú decides crear una cuenta, con un único fin: que no pierdas tu información al cambiar de equipo. Sin cuenta, la app funciona completa y ningún dato financiero sale de tu dispositivo.
 
 ## 1. Datos que recopila la aplicación
 
@@ -16,7 +18,7 @@ Nuvora funciona con los datos que tú introduces voluntariamente:
 - **Voz del comando "Dilo y listo" (opcional):** si usas el micrófono para dictar un movimiento, el audio se convierte en texto mediante el **servicio de reconocimiento de voz de tu teléfono** (SpeechRecognizer de Android, operado por Google). Nuvora no graba, almacena ni sube tu audio a ningún servidor propio; solo conserva en tu dispositivo el texto resultante para crear el movimiento. El permiso de micrófono se usa exclusivamente cuando tú tocas el botón del micrófono, y puedes usar la app entera sin concederlo.
 - **Enlace del catálogo web (opcional):** si compartes tu catálogo con el enlace de nuvora-ve.github.io/catalogo, los nombres, precios y detalles de tus productos viajan **codificados dentro del propio enlace**. No se guardan en ningún servidor: la página (alojada en GitHub Pages) solo los lee del enlace para mostrarlos. Ten en cuenta que **cualquier persona con el enlace puede ver esos datos**, por eso compártelo solo con tus clientes.
 
-Nuvora **no** recopila ubicación, contactos ni datos de uso analítico, y el micrófono solo se activa cuando tú tocas el botón de dictado. Las fotos del catálogo y los archivos que exportas permanecen en tu dispositivo y no se transmiten a nuestros servidores (ver sección 1). El **identificador de publicidad** solo lo gestiona Google AdMob para los anuncios de la versión gratuita (ver sección 4); Nuvora no lo lee ni lo almacena.
+Nuvora **no** recopila tu ubicación ni tus contactos, y el micrófono solo se activa cuando tú tocas el botón de dictado. Desde la versión 5.1.0, la app envía a Google **diagnósticos técnicos anónimos** (fallos de la app y estadísticas de uso agregadas, sin contenido financiero ni datos personales) mediante Firebase Crashlytics y Firebase Analytics, con el único fin de detectar errores y mejorar la estabilidad; ningún movimiento, monto, nombre ni dato financiero se incluye en esos reportes. Las fotos del catálogo y los archivos que exportas permanecen en tu dispositivo y no se transmiten a nuestros servidores (ver sección 1). El **identificador de publicidad** solo lo gestiona Google AdMob para los anuncios de la versión gratuita (ver sección 4); Nuvora no lo lee ni lo almacena.
 
 ## 2. Dónde se guardan tus datos
 
@@ -30,6 +32,8 @@ Nuvora **no** recopila ubicación, contactos ni datos de uso analítico, y el mi
 - **Google Cloud Firestore** — Respaldo y sincronización opcional. Recibe: tus datos financieros (solo con cuenta).
 - **Google Play Billing** — Suscripción Premium. Recibe: gestión de la compra (la procesa Google).
 - **Google AdMob** — Anuncios en la versión gratuita. Recibe: identificador de publicidad e interacción con anuncios.
+- **Google Firebase Crashlytics** — Reportes de fallos de la app. Recibe: información técnica del error (tipo de fallo, modelo de teléfono, versión de Android). Nunca tus datos financieros.
+- **Google Firebase Analytics** — Estadísticas de uso agregadas y anónimas (qué pantallas se usan, no qué escribes en ellas). Recibe: eventos técnicos sin contenido financiero.
 - **APIs públicas de tasas (DolarApi, Binance P2P, ER-API)** — Tasas de cambio BCV, paralelo, USDT y divisas. No reciben ningún dato personal; solo consultas de tasas.
 - **Reconocimiento de voz de Android (Google)** — Convertir tu voz en texto en "Dilo y listo". Recibe: el audio dictado, solo mientras dura el dictado; Nuvora no lo almacena.
 - **GitHub Pages (nuvora-ve.github.io)** — Mostrar el catálogo que compartes por enlace. No recibe datos en reposo: los datos viajan dentro del enlace; GitHub solo sirve la página (registra registros técnicos estándar de acceso web).
@@ -41,7 +45,7 @@ La versión gratuita de Nuvora muestra anuncios mediante **Google AdMob**. Para 
 
 - **Premium no muestra anuncios**: al suscribirte, la publicidad desaparece por completo.
 - Nuvora **no vende** tus datos financieros ni los comparte con anunciantes: tus cuentas, gastos y deudas jamás salen hacia redes publicitarias.
-- Nuvora no incluye rastreadores analíticos propios.
+- Nuvora no incluye rastreadores analíticos propios ni de terceros con fines publicitarios; los únicos diagnósticos son los técnicos y anónimos de Firebase descritos en las secciones 1 y 3.
 
 ## 5. Exportación y eliminación de datos
 
@@ -61,7 +65,7 @@ La aplicación no está dirigida a menores de 13 años y no recopila datos de me
 
 ## 8. Cambios en esta política
 
-Si una versión futura introduce nuevas funciones que cambien el tratamiento de datos (por ejemplo, asistente de IA), esta política se actualizará antes del lanzamiento de esa versión y se describirá exactamente qué datos se envían y con qué finalidad.
+Si una versión futura introduce nuevas funciones que cambien el tratamiento de datos (por ejemplo, fotos del catálogo en la nube o asistente de IA), esta política se actualizará antes del lanzamiento de esa versión y se describirá exactamente qué datos se envían y con qué finalidad.
 
 ## 9. Contacto
 
