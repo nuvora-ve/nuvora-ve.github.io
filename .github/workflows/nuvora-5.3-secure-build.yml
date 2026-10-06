@@ -1,0 +1,205 @@
+name: Nuvora 5.3 secure build
+
+on:
+  push:
+    paths:
+      - '.github/workflows/nuvora-5.3-secure-build.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - name: Checkout transport repository
+        uses: actions/checkout@v4
+
+      - name: Create ephemeral encryption key
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -out /tmp/nuvora-private.pem 2>/dev/null
+          openssl pkey -in /tmp/nuvora-private.pem -pubout -out /tmp/nuvora-public.pem 2>/dev/null
+          echo "NUVORA_PUBLIC_KEY_B64=$(base64 -w0 /tmp/nuvora-public.pem)"
+          echo "Waiting for encrypted Nuvora source payload..."
+
+      - name: Wait for encrypted source payload
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          API='https://api.github.com/repos/nuvora-ve/nuvora-ve.github.io/contents/.nuvora-secure-build'
+          for attempt in $(seq 1 150); do
+            if curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H 'Accept: application/vnd.github.raw+json' "$API/payload.b64?ref=main&ts=$attempt" -o /tmp/payload.b64 \
+              && curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H 'Accept: application/vnd.github.raw+json' "$API/key.b64?ref=main&ts=$attempt" -o /tmp/key.b64; then
+              echo "Encrypted payload received."
+              break
+            fi
+            if [ "$attempt" = 150 ]; then
+              echo 'Timed out waiting for encrypted payload.'
+              exit 1
+            fi
+            sleep 8
+          done
+          base64 -d /tmp/key.b64 > /tmp/key.enc
+          base64 -d /tmp/payload.b64 > /tmp/payload.enc
+          openssl pkeyutl -decrypt -inkey /tmp/nuvora-private.pem -in /tmp/key.enc -out /tmp/aes-pass.txt \
+            -pkeyopt rsa_padding_mode:oaep -pkeyopt rsa_oaep_md:sha256
+          openssl enc -d -aes-256-cbc -pbkdf2 -iter 200000 -in /tmp/payload.enc -out /tmp/nuvora-source.zip -pass file:/tmp/aes-pass.txt
+          mkdir -p "$RUNNER_TEMP/nuvora-src"
+          unzip -q /tmp/nuvora-source.zip -d "$RUNNER_TEMP/nuvora-src"
+          test -f "$RUNNER_TEMP/nuvora-src/pubspec.yaml"
+          grep -q '^version: 5.3.0+2060$' "$RUNNER_TEMP/nuvora-src/pubspec.yaml"
+          shred -u /tmp/aes-pass.txt /tmp/key.enc /tmp/payload.enc /tmp/nuvora-private.pem || true
+          rm -f /tmp/key.b64 /tmp/payload.b64 /tmp/nuvora-source.zip
+          echo "NUVORA_SRC=$RUNNER_TEMP/nuvora-src" >> "$GITHUB_ENV"
+
+      - name: Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Flutter 3.44.9
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+
+      - name: Prepare Flutter Android scaffold
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$NUVORA_SRC"
+          mkdir -p /tmp/nuvora_android
+          cp android/app/build.gradle.kts /tmp/nuvora_android/app_build.gradle.kts
+          cp android/build.gradle.kts /tmp/nuvora_android/root_build.gradle.kts
+          cp android/settings.gradle.kts /tmp/nuvora_android/settings.gradle.kts
+          cp android/app/src/main/AndroidManifest.xml /tmp/nuvora_android/AndroidManifest.xml
+          cp -a android/app/src/main/kotlin /tmp/nuvora_android/kotlin
+          cp -a android/app/src/main/res/layout /tmp/nuvora_android/layout
+          cp -a android/app/src/main/res/xml /tmp/nuvora_android/xml
+          cp -a android/app/src/main/res/values /tmp/nuvora_android/values
+          cp android/app/google-services.json /tmp/nuvora_android/google-services.json
+          cp android/app/key.properties /tmp/nuvora_android/key.properties
+          cp android/app/nuvora-upload.keystore /tmp/nuvora_android/nuvora-upload.keystore
+
+          flutter create --org com.nuvora --project-name nuvora --platforms android .
+          rm -f test/widget_test.dart
+
+          cp /tmp/nuvora_android/app_build.gradle.kts android/app/build.gradle.kts
+          cp /tmp/nuvora_android/root_build.gradle.kts android/build.gradle.kts
+          cp /tmp/nuvora_android/settings.gradle.kts android/settings.gradle.kts
+          cp /tmp/nuvora_android/AndroidManifest.xml android/app/src/main/AndroidManifest.xml
+          rm -rf android/app/src/main/kotlin
+          cp -a /tmp/nuvora_android/kotlin android/app/src/main/kotlin
+          rm -rf android/app/src/main/res/layout android/app/src/main/res/xml android/app/src/main/res/values
+          cp -a /tmp/nuvora_android/layout android/app/src/main/res/layout
+          cp -a /tmp/nuvora_android/xml android/app/src/main/res/xml
+          cp -a /tmp/nuvora_android/values android/app/src/main/res/values
+          cp /tmp/nuvora_android/google-services.json android/app/google-services.json
+          cp /tmp/nuvora_android/key.properties android/app/key.properties
+          cp /tmp/nuvora_android/nuvora-upload.keystore android/app/nuvora-upload.keystore
+          for d in mdpi hdpi xhdpi xxhdpi xxxhdpi; do
+            cp "android_icons/mipmap-$d/ic_launcher.png" "android/app/src/main/res/mipmap-$d/ic_launcher.png"
+          done
+          rm -rf android/app/src/main/res/mipmap-anydpi-v26
+          sed -i 's#distributionUrl=.*#distributionUrl=https\://services.gradle.org/distributions/gradle-8.11.1-all.zip#' android/gradle/wrapper/gradle-wrapper.properties
+
+      - name: Verify identity and upload certificate
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$NUVORA_SRC"
+          grep -q 'applicationId = "com.nuvora.ve"' android/app/build.gradle.kts
+          grep -q 'targetSdk = 36' android/app/build.gradle.kts
+          grep -q '^version: 5.3.0+2060$' pubspec.yaml
+          python3 - <<'PY'
+          import json
+          d=json.load(open('android/app/google-services.json', encoding='utf-8'))
+          pkgs=[(c.get('client_info',{}).get('android_client_info',{}) or {}).get('package_name') for c in d.get('client',[])]
+          assert 'com.nuvora.ve' in pkgs, pkgs
+          PY
+          STORE=$(grep '^storePassword=' android/app/key.properties | cut -d= -f2-)
+          ALIAS=$(grep '^keyAlias=' android/app/key.properties | cut -d= -f2-)
+          ACTUAL=$(keytool -list -v -keystore android/app/nuvora-upload.keystore -storepass "$STORE" -alias "$ALIAS" 2>/dev/null | awk '/SHA256:/{print $2; exit}' | tr -d ':' | tr '[:lower:]' '[:upper:]')
+          EXPECTED='465702DED7BA35621DEDC0339107762812ACCD1FDDBE3F7F98A0067B1709C075'
+          test "$ACTUAL" = "$EXPECTED" || (echo 'Upload certificate mismatch' && exit 1)
+          echo 'Package and upload certificate verified.'
+
+      - name: Static quality gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$NUVORA_SRC"
+          python3 tool/preflight.py
+          python3 tool/ui_contract.py
+          python3 tool/visual_reference_v509.py
+          python3 tool/launch_readiness_v509.py
+          python3 tool/quality_gate_v509.py
+          python3 tool/quality_gate_v510.py
+          python3 tool/quality_gate_v530.py
+
+      - name: Resolve dependencies
+        run: cd "$NUVORA_SRC" && flutter pub get
+
+      - name: Analyze Dart
+        run: cd "$NUVORA_SRC" && flutter analyze --no-fatal-infos --no-fatal-warnings
+
+      - name: Run tests
+        run: cd "$NUVORA_SRC" && flutter test
+
+      - name: Build signed AAB
+        run: cd "$NUVORA_SRC" && flutter build appbundle --release
+
+      - name: Verify AAB signature
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$NUVORA_SRC"
+          jarsigner -verify -verbose -certs build/app/outputs/bundle/release/app-release.aab > /tmp/aab-signature.txt
+          grep -qi 'jar verified' /tmp/aab-signature.txt
+
+      - name: Build signed APK arm64
+        run: cd "$NUVORA_SRC" && flutter build apk --release --target-platform android-arm64
+
+      - name: Release hashes
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$NUVORA_SRC"
+          sha256sum build/app/outputs/bundle/release/app-release.aab | tee /tmp/app-release.aab.sha256
+          sha256sum build/app/outputs/flutter-apk/app-release.apk | tee /tmp/app-release.apk.sha256
+          {
+            echo 'Nuvora 5.3.0+2060'
+            echo 'applicationId=com.nuvora.ve'
+            echo 'targetSdk=36'
+            cat /tmp/app-release.aab.sha256
+            cat /tmp/app-release.apk.sha256
+          } > /tmp/RELEASE_INFO.txt
+
+      - name: Upload AAB
+        uses: actions/upload-artifact@v4
+        with:
+          name: nuvora-5.3.0-aab-play-console
+          retention-days: 2
+          path: |
+            ${{ env.NUVORA_SRC }}/build/app/outputs/bundle/release/app-release.aab
+            /tmp/app-release.aab.sha256
+            /tmp/aab-signature.txt
+            /tmp/RELEASE_INFO.txt
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: nuvora-5.3.0-apk-qa
+          retention-days: 2
+          path: |
+            ${{ env.NUVORA_SRC }}/build/app/outputs/flutter-apk/app-release.apk
+            /tmp/app-release.apk.sha256
+            /tmp/RELEASE_INFO.txt
