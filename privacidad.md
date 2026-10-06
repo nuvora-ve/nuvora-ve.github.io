@@ -1,72 +1,150 @@
+---
+permalink: /privacidad
+---
+
 # Política de Privacidad de Nuvora
 
-**Última actualización: octubre de 2026 — versión 5.1.0**
+**Última actualización: 6 de octubre de 2026 — versión 5.6.0**
 
-Nuvora ("la aplicación") es una herramienta de finanzas personales y de negocio. Esta política explica qué datos utiliza, dónde se guardan, cuándo salen de tu dispositivo y qué derechos tienes.
+Nuvora ("la aplicación") es una herramienta de finanzas personales y de gestión para emprendimientos. Esta política explica qué datos utiliza Nuvora, dónde se almacenan, cuándo pueden salir de tu dispositivo, qué servicios de terceros intervienen y qué opciones tienes para controlar o eliminar tu información.
 
-> **Principio rector de Nuvora: tus datos viven en tu teléfono.** La nube es opcional y solo se activa si tú decides crear una cuenta, con un único fin: que no pierdas tu información al cambiar de equipo. Sin cuenta, la app funciona completa y ningún dato financiero sale de tu dispositivo.
+> **Principio de privacidad de Nuvora:** la aplicación está diseñada con un enfoque local primero. Tus registros personales y financieros se guardan en tu dispositivo. La sincronización en la nube es opcional. Algunas funciones que tú decides utilizar —como publicar un catálogo web, iniciar sesión, usar reconocimiento de voz, ver anuncios o compartir por WhatsApp— requieren servicios externos y se describen expresamente en esta política.
 
-## 1. Datos que recopila la aplicación
+## 1. Datos que puedes introducir en Nuvora
 
-Nuvora funciona con los datos que tú introduces voluntariamente:
+Nuvora puede tratar la información que tú introduces voluntariamente, incluyendo:
 
-- **Datos financieros:** cuentas, saldos, gastos, ingresos, presupuestos, objetivos y fondos de ahorro, deudas, créditos a clientes, inventarios, arqueos de caja, recordatorios y suscripciones.
-- **Datos de cuenta (opcionales):** si decides crear una cuenta en la nube, tu **correo electrónico** y un identificador de usuario generado por Firebase Authentication. Si entras con Google, Google nos confirma tu correo; Nuvora nunca recibe tu contraseña de Google.
-- **Datos de compra:** si adquieres la suscripción Premium, la transacción la procesa Google Play; Nuvora solo recibe el estado de tu suscripción (activa o no), nunca tus datos de pago.
-- **Fotos del catálogo (opcionales):** si usas el catálogo de WhatsApp del módulo Emprendedor, puedes elegir fotos de tu galería para tus productos. Las fotos se guardan únicamente en tu teléfono, no se suben a ningún servidor (tampoco a la nube de respaldo) y solo salen del dispositivo cuando tú decides compartirlas por WhatsApp.
-- **Texto del comando inteligente:** la función "Escríbelo y Nuvora lo registra" interpreta lo que escribes directamente en tu dispositivo para crear el movimiento; ese texto no se envía a ningún servidor.
-- **Voz del comando "Dilo y listo" (opcional):** si usas el micrófono para dictar un movimiento, el audio se convierte en texto mediante el **servicio de reconocimiento de voz de tu teléfono** (SpeechRecognizer de Android, operado por Google). Nuvora no graba, almacena ni sube tu audio a ningún servidor propio; solo conserva en tu dispositivo el texto resultante para crear el movimiento. El permiso de micrófono se usa exclusivamente cuando tú tocas el botón del micrófono, y puedes usar la app entera sin concederlo.
-- **Enlace del catálogo web (opcional):** si compartes tu catálogo con el enlace de nuvora-ve.github.io/catalogo, los nombres, precios y detalles de tus productos viajan **codificados dentro del propio enlace**. No se guardan en ningún servidor: la página (alojada en GitHub Pages) solo los lee del enlace para mostrarlos. Ten en cuenta que **cualquier persona con el enlace puede ver esos datos**, por eso compártelo solo con tus clientes.
+- **Finanzas personales:** cuentas, saldos, gastos, ingresos, presupuestos, metas, fondos, deudas, suscripciones, recordatorios, pagos y planificación financiera.
+- **Modo Emprendimiento:** negocios, ventas, compras, clientes, proveedores, cuentas por cobrar o fiados, inventario, costos, precios, stock, arqueos y cierres de caja, ganancias, márgenes, recibos y demás información operativa del negocio.
+- **Datos del negocio para el catálogo:** nombre del negocio, descripción, número de WhatsApp, moneda, logo, productos, precios, descripciones, disponibilidad o stock y fotografías de productos.
+- **Datos de cuenta opcionales:** correo electrónico e identificador de usuario generado por Firebase Authentication. Si utilizas Inicio de sesión con Google, Google autentica tu cuenta y comunica a Nuvora los datos necesarios para iniciar sesión. Nuvora no recibe tu contraseña de Google.
+- **Datos de compra:** si compras Premium u otro producto gestionado mediante Google Play, Google procesa el pago. Nuvora recibe la información necesaria para reconocer el estado de la compra o suscripción, pero no recibe los datos completos de tu tarjeta u otro medio de pago.
+- **Texto de registro inteligente:** cuando escribes una instrucción para registrar un movimiento, Nuvora la interpreta dentro de la aplicación para crear el registro correspondiente.
+- **Voz opcional:** si utilizas el dictado, el audio es procesado por el servicio de reconocimiento de voz disponible en Android. Nuvora no mantiene una grabación propia del audio; utiliza el texto resultante para completar la acción solicitada.
 
-Nuvora **no** recopila tu ubicación ni tus contactos, y el micrófono solo se activa cuando tú tocas el botón de dictado. Desde la versión 5.1.0, la app envía a Google **diagnósticos técnicos anónimos** (fallos de la app y estadísticas de uso agregadas, sin contenido financiero ni datos personales) mediante Firebase Crashlytics y Firebase Analytics, con el único fin de detectar errores y mejorar la estabilidad; ningún movimiento, monto, nombre ni dato financiero se incluye en esos reportes. Las fotos del catálogo y los archivos que exportas permanecen en tu dispositivo y no se transmiten a nuestros servidores (ver sección 1). El **identificador de publicidad** solo lo gestiona Google AdMob para los anuncios de la versión gratuita (ver sección 4); Nuvora no lo lee ni lo almacena.
+Nuvora no solicita acceso a tus contactos ni utiliza tu ubicación para las funciones financieras descritas actualmente. El micrófono se utiliza únicamente cuando activas voluntariamente una función de dictado.
 
-## 2. Dónde se guardan tus datos
+## 2. Almacenamiento local y sincronización opcional
 
-- **En tu dispositivo:** toda tu información se guarda localmente y la app funciona sin conexión. Puedes protegerla con el bloqueo biométrico de tu teléfono.
-- **En la nube (solo si creas una cuenta):** para respaldar y sincronizar entre tus dispositivos, tus datos financieros se copian cifrados (HTTPS/TLS) a **Cloud Firestore** (Google Cloud). Cada usuario solo puede leer y escribir sus propios datos, garantizado por reglas de seguridad del lado del servidor. Nadie más — ni otros usuarios ni el desarrollador en el uso normal — puede ver tu información.
-- Si nunca creas una cuenta, **ningún dato financiero sale de tu teléfono**.
+- **En tu dispositivo:** los datos principales de la aplicación se almacenan localmente y muchas funciones pueden utilizarse sin conexión.
+- **Sincronización opcional:** si creas o utilizas una cuenta, Nuvora puede sincronizar tu información con **Google Cloud Firestore** para permitir respaldo y recuperación entre dispositivos.
+- **Transmisión:** cuando se utilizan servicios en la nube, la comunicación se realiza mediante conexiones cifradas HTTPS/TLS.
+- **Sin cuenta:** los registros financieros principales permanecen en el dispositivo, salvo cuando activas voluntariamente una función que necesita transmitir información, como publicar un catálogo, utilizar reconocimiento de voz, efectuar una compra, mostrar anuncios o compartir contenido mediante otra aplicación.
 
-## 3. Servicios de terceros que utiliza Nuvora
+## 3. Catálogo web del Modo Emprendimiento
 
-- **Google Firebase Authentication** — Inicio de sesión opcional. Recibe: correo electrónico.
-- **Google Cloud Firestore** — Respaldo y sincronización opcional. Recibe: tus datos financieros (solo con cuenta).
-- **Google Play Billing** — Suscripción Premium. Recibe: gestión de la compra (la procesa Google).
-- **Google AdMob** — Anuncios en la versión gratuita. Recibe: identificador de publicidad e interacción con anuncios.
-- **Google Firebase Crashlytics** — Reportes de fallos de la app. Recibe: información técnica del error (tipo de fallo, modelo de teléfono, versión de Android). Nunca tus datos financieros.
-- **Google Firebase Analytics** — Estadísticas de uso agregadas y anónimas (qué pantallas se usan, no qué escribes en ellas). Recibe: eventos técnicos sin contenido financiero.
-- **APIs públicas de tasas (DolarApi, Binance P2P, ER-API)** — Tasas de cambio BCV, paralelo, USDT y divisas. No reciben ningún dato personal; solo consultas de tasas.
-- **Reconocimiento de voz de Android (Google)** — Convertir tu voz en texto en "Dilo y listo". Recibe: el audio dictado, solo mientras dura el dictado; Nuvora no lo almacena.
-- **GitHub Pages (nuvora-ve.github.io)** — Mostrar el catálogo que compartes por enlace. No recibe datos en reposo: los datos viajan dentro del enlace; GitHub solo sirve la página (registra registros técnicos estándar de acceso web).
-- **WhatsApp (solo si tú compartes)** — Enviar catálogo, cobros o recibos a tus contactos. Recibe: solo lo que tú eliges compartir manualmente; Nuvora no envía nada por su cuenta.
+Cuando decides **publicar o compartir un catálogo web**, determinados datos dejan de ser exclusivamente locales porque deben estar disponibles para que tus clientes puedan ver el catálogo.
 
-## 4. Anuncios (solo en la versión gratuita)
+El catálogo puede incluir:
 
-La versión gratuita de Nuvora muestra anuncios mediante **Google AdMob**. Para servirlos, AdMob puede usar el **identificador de publicidad** de tu dispositivo y datos de interacción con los anuncios, según la política de privacidad de Google (https://policies.google.com/privacy). Puedes desactivar la personalización de anuncios en los ajustes de Google de tu teléfono.
+- nombre, descripción y logo del negocio;
+- número de WhatsApp del negocio;
+- nombres y descripciones de productos;
+- precios, moneda y disponibilidad o stock;
+- fotografías de productos;
+- fecha de actualización del catálogo.
 
-- **Premium no muestra anuncios**: al suscribirte, la publicidad desaparece por completo.
-- Nuvora **no vende** tus datos financieros ni los comparte con anunciantes: tus cuentas, gastos y deudas jamás salen hacia redes publicitarias.
-- Nuvora no incluye rastreadores analíticos propios ni de terceros con fines publicitarios; los únicos diagnósticos son los técnicos y anónimos de Firebase descritos en las secciones 1 y 3.
+Dependiendo de tu sesión y de la disponibilidad de los servicios, Nuvora puede utilizar uno de estos mecanismos:
 
-## 5. Exportación y eliminación de datos
+1. **Firebase Storage:** si existe una sesión compatible, Nuvora puede publicar el archivo del catálogo, el logo y las fotografías de productos en infraestructura de Google Firebase Storage.
+2. **Cloudflare Workers / R2:** como mecanismo alternativo para las imágenes del catálogo, Nuvora puede subir fotografías o el logo a infraestructura de Cloudflare para generar una URL pública.
+3. **Enlace codificado:** cuando corresponde, parte de la información del catálogo puede viajar codificada dentro del propio enlace compartido para que la página pueda representarla.
 
-Desde **Herramientas → Ajustes** puedes:
+**Un catálogo publicado está destinado a ser visible para terceros.** Cualquier persona que reciba o consiga el enlace puede ver la información pública contenida en ese catálogo. No publiques datos que no quieras mostrar a tus clientes.
 
-- **Exportar** todos tus datos en formato JSON.
-- **Eliminar los datos del dispositivo** permanentemente.
-- **Eliminar tu cuenta y tus datos de la nube:** en la tarjeta de tu cuenta, toca **"Eliminar cuenta y datos"**. Esto borra tu usuario, tu respaldo en la nube y tus datos locales de forma permanente e irreversible. También puedes solicitar el borrado escribiendo al correo de contacto de la sección 9.
+Las fotografías seleccionadas siguen guardándose también en el dispositivo mientras permanezcan allí, pero al publicar el catálogo una copia puede enviarse a Firebase Storage o Cloudflare R2 para que pueda mostrarse en Internet.
 
-## 6. Naturaleza de las recomendaciones
+## 4. Carrito y pedidos enviados por WhatsApp
 
-Los cálculos y recomendaciones de Nuvora (dinero disponible, gasto diario sugerido, "¿Puedo permitírmelo?", proyecciones de flujo de caja, Modo Emergencia) son **orientativos** y se basan únicamente en la información que tú introduces. No constituyen asesoramiento financiero, contable ni legal profesional.
+El catálogo web puede permitir que un cliente seleccione productos, cantidades, escriba su nombre y agregue una nota antes de preparar un pedido.
 
-## 7. Menores de edad
+- La selección del carrito se gestiona en la página del catálogo.
+- Nuvora no utiliza actualmente un servidor propio para almacenar el contenido del carrito como una orden automática.
+- Cuando el cliente elige **Enviar pedido por WhatsApp**, se prepara un mensaje con los productos, cantidades, total y los datos escritos por el cliente, y se abre WhatsApp para que el usuario continúe el envío.
+- WhatsApp recibe el contenido únicamente cuando el usuario continúa con esa acción conforme al funcionamiento de su servicio.
 
-La aplicación no está dirigida a menores de 13 años y no recopila datos de menores de forma intencional.
+La información tratada posteriormente dentro de WhatsApp queda sujeta también a las condiciones y política de privacidad de WhatsApp/Meta.
 
-## 8. Cambios en esta política
+## 5. Diagnósticos, analítica y publicidad
 
-Si una versión futura introduce nuevas funciones que cambien el tratamiento de datos (por ejemplo, fotos del catálogo en la nube o asistente de IA), esta política se actualizará antes del lanzamiento de esa versión y se describirá exactamente qué datos se envían y con qué finalidad.
+Nuvora utiliza servicios de Google para mejorar estabilidad, entender el funcionamiento general de la aplicación y monetizar la versión gratuita.
 
-## 9. Contacto
+- **Firebase Crashlytics:** puede recibir información técnica sobre fallos, versión de la app, sistema operativo, modelo o características técnicas del dispositivo y otros identificadores técnicos necesarios para diagnosticar errores.
+- **Firebase Analytics:** puede recibir eventos técnicos o de uso de la aplicación e identificadores técnicos asociados al funcionamiento del servicio. Nuvora procura no enviar deliberadamente contenido financiero, montos, nombres de clientes ni descripciones privadas como parámetros analíticos.
+- **Google AdMob:** la versión gratuita puede mostrar anuncios. Google puede tratar el identificador de publicidad, información técnica del dispositivo e interacción con anuncios de acuerdo con sus propias políticas y la configuración del usuario.
+- **Premium:** cuando la modalidad Premium esté activa y corresponda según la configuración del producto, la publicidad puede dejar de mostrarse.
 
-Para preguntas sobre esta política o para solicitar la eliminación de tu cuenta y datos: **Nuvoraapk@gmail.com**
+Nuvora **no vende tus registros financieros a anunciantes**.
+
+## 6. Servicios de terceros utilizados
+
+Según las funciones que utilices, Nuvora puede interactuar con:
+
+- **Google Firebase Authentication / Google Sign-In:** autenticación opcional.
+- **Google Cloud Firestore:** sincronización y respaldo opcional.
+- **Google Firebase Storage:** publicación de catálogos, logos y fotografías cuando corresponde.
+- **Firebase Crashlytics:** diagnóstico de fallos.
+- **Firebase Analytics:** métricas técnicas y de uso.
+- **Google Play Billing:** compras y suscripciones.
+- **Google AdMob:** publicidad en la versión gratuita.
+- **Reconocimiento de voz de Android / Google:** conversión de voz a texto cuando activas el dictado.
+- **Cloudflare Workers y Cloudflare R2:** procesamiento y alojamiento alternativo de imágenes publicadas en catálogos.
+- **GitHub Pages:** alojamiento de la página web de Nuvora, esta política y la interfaz pública del catálogo. GitHub puede generar registros técnicos estándar de acceso web.
+- **WhatsApp / Meta:** envío voluntario de catálogos, pedidos, cobros, recibos u otros mensajes que decidas compartir.
+- **Servicios públicos de tasas y divisas:** consultas necesarias para mostrar tasas de cambio. Estas consultas no necesitan incluir tus movimientos financieros personales.
+
+Cada proveedor puede tratar determinados datos conforme a sus propias políticas de privacidad y condiciones de servicio.
+
+## 7. Permisos del dispositivo
+
+Nuvora puede solicitar permisos únicamente cuando una función los necesita, entre ellos:
+
+- **Micrófono:** para dictado por voz.
+- **Fotos o galería:** para elegir logos o fotografías de productos cuando utilizas el catálogo.
+- **Notificaciones:** para recordatorios, pagos u otras alertas financieras configuradas por el usuario.
+- **Biometría:** para permitir bloqueo o acceso protegido utilizando las capacidades de seguridad del dispositivo.
+
+Puedes negar o revocar permisos desde los ajustes de Android, aunque la función relacionada puede dejar de estar disponible.
+
+## 8. Exportación, conservación y eliminación
+
+Nuvora permite administrar datos desde la propia aplicación según las funciones disponibles:
+
+- puedes exportar información compatible en formatos ofrecidos por la app;
+- puedes eliminar datos locales desde las opciones correspondientes;
+- puedes solicitar la eliminación de tu cuenta de autenticación desde la aplicación cuando la función esté disponible;
+- los datos sincronizados se conservan mientras exista la cuenta o sean necesarios para prestar la sincronización, salvo eliminación o requisitos legales aplicables.
+
+**Catálogos publicados:** los archivos públicos del catálogo, sus imágenes o copias alojadas en Firebase Storage o Cloudflare pueden permanecer accesibles mientras sigan publicados o mientras exista su URL. Si necesitas retirar datos o imágenes de un catálogo ya publicado y la aplicación no ofrece en ese momento un control suficiente para eliminarlos, puedes solicitar su eliminación escribiendo a **Nuvoraapk@gmail.com** e indicando la información necesaria para identificar el catálogo.
+
+Los proveedores externos también pueden conservar registros técnicos durante los periodos establecidos en sus propias políticas o por obligaciones legales.
+
+## 9. Seguridad
+
+Nuvora utiliza medidas razonables orientadas a proteger la información, entre ellas almacenamiento local, reglas de acceso de Firebase cuando se utiliza sincronización y conexiones HTTPS/TLS para comunicaciones remotas.
+
+Ningún sistema puede garantizar seguridad absoluta. Por ello, protege tu dispositivo, no compartas credenciales y recuerda que un enlace de catálogo público puede ser reenviado por terceros.
+
+## 10. Menores de edad
+
+Nuvora no está dirigida intencionalmente a menores de 13 años y no busca recopilar deliberadamente información personal de menores de esa edad. Si detectamos que se ha proporcionado información de un menor de forma indebida, puede solicitarse su eliminación mediante el correo de contacto.
+
+## 11. Decisiones y recomendaciones financieras
+
+Los análisis, proyecciones, presupuestos, estimaciones, recomendaciones, indicadores de dinero disponible, simulaciones y demás resultados mostrados por Nuvora son herramientas informativas basadas en los datos introducidos por el usuario.
+
+No constituyen asesoramiento financiero, contable, fiscal ni legal profesional, ni garantizan resultados futuros.
+
+## 12. Cambios en esta política
+
+Esta política puede actualizarse cuando cambien las funciones de Nuvora, los proveedores utilizados o la forma en que se tratan los datos. La fecha de actualización publicada al inicio de esta página indicará la versión vigente.
+
+Cuando una actualización implique cambios relevantes en el tratamiento de información, Nuvora procurará reflejarlos en esta política antes o junto con el lanzamiento correspondiente.
+
+## 13. Contacto y solicitudes de privacidad
+
+Para preguntas, solicitudes de acceso, corrección o eliminación de datos, o para pedir la retirada de un catálogo o de imágenes publicadas:
+
+**Correo:** Nuvoraapk@gmail.com
+
+**Política oficial:** https://nuvora-ve.github.io/privacidad
