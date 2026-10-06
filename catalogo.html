@@ -1,182 +1,51 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#020409">
-<title>Catálogo · Nuvora</title>
-<style>
-:root{color-scheme:dark;--bg:#020409;--surface:#08111e;--surface2:#0b1727;--line:#173451;--text:#f4f8ff;--muted:#91a5c3;--cyan:#16d5ff;--blue:#4da6ff;--green:#2ce59b;--danger:#ff6b7a}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:radial-gradient(circle at 50% -15%,#0a2948 0,transparent 35%),linear-gradient(180deg,#020409,#04101d 70%,#020409);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh;padding:env(safe-area-inset-top) 0 calc(104px + env(safe-area-inset-bottom))}
-button,input,textarea{font:inherit}
-.wrap{width:min(760px,100%);margin:0 auto;padding:20px 15px 36px}
-.brand{text-align:center;font-weight:950;letter-spacing:.32em;font-size:15px;color:#79b0ff;margin:14px 0 20px;text-shadow:0 0 18px #4da6ff55}
-.hero{padding:20px;border:1px solid #ffffff1c;border-radius:24px;background:linear-gradient(135deg,#00d4ff15,#4da6ff09);box-shadow:0 16px 44px #0007}
-.heroTop{display:flex;gap:14px;align-items:center}
-.logo,.mark{width:66px;height:66px;border-radius:19px;flex:0 0 66px;border:1px solid #ffffff20;background:#071421}
-.logo{object-fit:cover}
-.mark{display:grid;place-items:center;font-weight:950;font-size:25px;color:var(--cyan);background:linear-gradient(135deg,#00d4ff1b,#4da6ff12)}
-.heroCopy{min-width:0;flex:1}.eyebrow{font-size:11px;font-weight:850;letter-spacing:.15em;color:var(--cyan)}
-h1{font-size:clamp(27px,7vw,40px);line-height:1.05;margin:7px 0 5px}.desc{margin:0;color:var(--muted);font-size:14px;line-height:1.45}
-.heroActions{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}.heroBtn{border:0;border-radius:13px;padding:10px 13px;font-weight:850;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}.wa{background:#25d366;color:#04160b}.secondary{background:#ffffff0d;color:var(--text);border:1px solid #ffffff18}
-.catalogTitle{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:23px 2px 11px}.catalogTitle h2{font-size:20px;margin:0}.catalogTitle span{color:var(--muted);font-size:12px}
-.grid{display:grid;grid-template-columns:1fr;gap:14px}
-.prod{overflow:hidden;border:1px solid #ffffff18;background:#08111ee8;border-radius:20px;box-shadow:0 10px 28px #0005}
-.visual{position:relative;width:100%;aspect-ratio:16/10;background:linear-gradient(135deg,#08202b,#0d1c34);overflow:hidden}
-.photo{width:100%;height:100%;object-fit:cover;display:block}.photoFallback{position:absolute;inset:0;display:grid;place-items:center;font-size:42px;color:#7890ad;background:linear-gradient(135deg,#00d4ff0e,#4da6ff0b)}
-.prodBody{padding:15px}.prodTop{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.nm{font-weight:900;font-size:17px;line-height:1.22}.pr{font-weight:950;color:var(--green);font-size:17px;white-space:nowrap}.dt{color:var(--muted);font-size:13px;line-height:1.5;margin-top:8px}
-.buyRow{margin-top:14px;display:flex;align-items:center;gap:9px}.add{flex:1;border:0;border-radius:13px;background:linear-gradient(135deg,var(--cyan),var(--blue));color:#00131e;font-weight:950;padding:11px 14px;cursor:pointer}.qty{display:none;align-items:center;gap:9px}.qty.on{display:flex}.qty button{width:38px;height:38px;border-radius:12px;border:1px solid #ffffff1b;background:#ffffff0d;color:var(--text);font-size:20px;font-weight:900;cursor:pointer}.qty strong{min-width:26px;text-align:center;font-size:16px}.add.hidden{display:none}
-.empty,.error{text-align:center;color:var(--muted);padding:45px 18px;border:1px dashed #ffffff1c;border-radius:20px;background:#ffffff05}
-.order{display:none;margin-top:24px;padding:18px;border-radius:22px;background:#07111f;border:1px solid #1a3b59;box-shadow:0 16px 40px #0006}.order.on{display:block}.order h2{margin:0 0 4px;font-size:21px}.orderHint{color:var(--muted);font-size:12px;margin-bottom:14px}.orderLine{display:grid;grid-template-columns:1fr auto;gap:10px;padding:10px 0;border-bottom:1px solid #ffffff0f}.orderLine:last-child{border-bottom:0}.orderName{font-weight:800}.orderMeta{color:var(--muted);font-size:12px;margin-top:2px}.orderPrice{font-weight:900;color:var(--green)}.total{display:flex;justify-content:space-between;gap:12px;align-items:center;margin:14px 0;font-size:18px;font-weight:950}.fields{display:grid;gap:9px}.field{width:100%;border:1px solid #ffffff1d;background:#020914;color:var(--text);border-radius:13px;padding:12px 13px;outline:none}.field:focus{border-color:#16d5ff99;box-shadow:0 0 0 3px #16d5ff15}.actions{display:grid;gap:9px;margin-top:12px}.primaryAction,.ghostAction{border:0;border-radius:14px;padding:13px 15px;font-weight:950;cursor:pointer}.primaryAction{background:#25d366;color:#03170b}.primaryAction.share{background:linear-gradient(135deg,var(--cyan),var(--blue));color:#00131e}.ghostAction{background:#ffffff0d;color:var(--text);border:1px solid #ffffff18}.status{min-height:18px;text-align:center;color:var(--green);font-size:12px;margin-top:8px}
-footer{text-align:center;margin-top:28px}.cta{display:block;text-decoration:none;border-radius:16px;padding:14px 17px;background:linear-gradient(135deg,var(--cyan),var(--blue));color:#00131e;font-weight:950}.foot{color:#6f8197;font-size:11px;margin-top:12px;line-height:1.45}
-.cartBar{position:fixed;z-index:30;left:50%;bottom:calc(12px + env(safe-area-inset-bottom));transform:translateX(-50%);width:min(730px,calc(100% - 22px));display:none;align-items:center;justify-content:space-between;gap:12px;padding:11px 12px 11px 15px;border:1px solid #ffffff22;border-radius:19px;background:#07111ff2;backdrop-filter:blur(18px);box-shadow:0 18px 50px #000b}.cartBar.on{display:flex}.cartInfo{min-width:0}.cartCount{font-weight:900;font-size:14px}.cartTotal{font-size:12px;color:var(--muted);margin-top:2px}.viewOrder{border:0;border-radius:13px;padding:11px 14px;background:linear-gradient(135deg,var(--cyan),var(--blue));color:#00131e;font-weight:950;cursor:pointer;white-space:nowrap}
-@media(min-width:560px){.grid{grid-template-columns:1fr 1fr}.prod{display:flex;flex-direction:column}.prodBody{display:flex;flex-direction:column;flex:1}.buyRow{margin-top:auto;padding-top:14px}.actions{grid-template-columns:1fr 1fr}.actions .primaryAction{grid-column:1/-1}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#03101f" />
+  <meta name="color-scheme" content="dark" />
+  <title>Catálogo · Nuvora</title>
+  <style>
+    :root{--bg:#020814;--panel:#071426;--panel2:#0a1b31;--line:#1a3957;--cyan:#00d4ff;--blue:#4da6ff;--text:#f5f9ff;--muted:#91a5bd;--green:#2de2a7;--danger:#ff6f7d;--shadow:0 18px 55px rgba(0,0,0,.42)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 50% -12%,#0c355c 0,transparent 31%),linear-gradient(180deg,#020814,#03101f 58%,#020814);color:var(--text);min-height:100vh;padding-bottom:94px}
+    button,input,textarea{font:inherit}.wrap{max-width:920px;margin:auto;padding:18px 14px 42px}.topbrand{display:flex;align-items:center;justify-content:center;gap:9px;padding:8px 0 18px;font-size:12px;font-weight:900;letter-spacing:.22em;color:#a9c8ef}.nmark{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(145deg,#02d6ff,#4d86ff);color:#00111b;font-weight:1000;letter-spacing:0;box-shadow:0 0 26px #00d4ff55}
+    .hero{position:relative;overflow:hidden;border:1px solid #ffffff18;background:linear-gradient(145deg,#0b2543d9,#071426e8);border-radius:26px;padding:20px;box-shadow:var(--shadow)}.hero:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;right:-70px;top:-90px;background:#00d4ff25;filter:blur(8px)}.hero-main{display:flex;gap:14px;align-items:center;position:relative;z-index:1}.logo{width:72px;height:72px;border-radius:21px;object-fit:cover;background:#071426;border:1px solid #ffffff22}.initial{width:72px;height:72px;border-radius:21px;display:grid;place-items:center;background:linear-gradient(145deg,#00d4ff24,#4d8bff18);border:1px solid #ffffff20;font-size:28px;font-weight:1000;color:#7be8ff}.hero-copy{min-width:0;flex:1}.eyebrow{font-size:10px;letter-spacing:.17em;color:#6ee6ff;font-weight:900}.hero h1{font-size:clamp(25px,7vw,38px);line-height:1.04;margin:6px 0 5px}.sub{color:var(--muted);line-height:1.45;margin:0;font-size:13px}.contact{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:15px;min-height:44px;padding:11px 16px;border-radius:14px;text-decoration:none;background:#25d366;color:#03140a;font-weight:950;font-size:13px;border:0;cursor:pointer}.contact.secondary{background:#ffffff0e;color:#dce9f8;border:1px solid #ffffff18}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:24px 3px 12px}.section-head h2{font-size:18px;margin:0}.section-head span{color:var(--muted);font-size:12px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.item{display:flex;flex-direction:column;overflow:hidden;border:1px solid #ffffff14;background:linear-gradient(180deg,#0a1a2ddb,#071426e8);border-radius:20px;box-shadow:0 9px 28px #0005;min-width:0}.photo,.ph{width:100%;aspect-ratio:1/1;object-fit:cover;background:#06101d}.ph{display:grid;place-items:center;background:linear-gradient(145deg,#00d4ff0e,#4d8bff0b);color:#577089;font-size:32px}.body{padding:13px;display:flex;flex-direction:column;flex:1}.name{font-weight:900;font-size:14px;line-height:1.25}.price{color:var(--green);font-weight:1000;font-size:16px;margin-top:5px}.detail{color:var(--muted);font-size:11.5px;line-height:1.45;margin-top:6px;min-height:0}.stock{display:inline-flex;align-items:center;gap:5px;font-size:10px;color:#9db0c7;margin-top:8px}.stock.out{color:#ff8994}.add{width:100%;min-height:42px;margin-top:12px;border:0;border-radius:13px;background:linear-gradient(135deg,var(--cyan),var(--blue));color:#00131f;font-weight:950;cursor:pointer}.add:disabled{background:#ffffff0c;color:#667990;cursor:not-allowed}.empty,.error{text-align:center;color:var(--muted);padding:42px 16px;border:1px dashed #ffffff18;border-radius:18px;background:#07142688}.cta{display:block;text-align:center;margin:26px auto 0;padding:14px 18px;border-radius:16px;text-decoration:none;background:#ffffff0c;border:1px solid #ffffff18;color:#cfe0f4;font-weight:800}.foot{text-align:center;color:#62778f;font-size:11px;margin-top:15px}
+    .cartbar{position:fixed;z-index:20;left:50%;transform:translateX(-50%);bottom:max(12px,env(safe-area-inset-bottom));width:min(calc(100% - 24px),760px);display:none;align-items:center;justify-content:space-between;gap:14px;padding:11px 12px 11px 16px;border-radius:20px;background:#0a1b31ef;border:1px solid #34bfff55;box-shadow:0 18px 55px #000a,0 0 26px #00d4ff20;backdrop-filter:blur(18px)}.cartbar.show{display:flex}.cartmini{min-width:0}.cartmini strong{display:block;font-size:14px}.cartmini span{font-size:11px;color:var(--muted)}.open-cart{border:0;border-radius:14px;padding:11px 15px;background:linear-gradient(135deg,var(--cyan),var(--blue));color:#00131f;font-weight:950;cursor:pointer}
+    .shade{position:fixed;z-index:29;inset:0;background:#000b;display:none}.shade.show{display:block}.sheet{position:fixed;z-index:30;left:0;right:0;bottom:0;max-height:88vh;overflow:auto;background:#071426;border-top:1px solid #ffffff1e;border-radius:27px 27px 0 0;padding:18px 16px calc(24px + env(safe-area-inset-bottom));transform:translateY(110%);transition:transform .24s ease;box-shadow:0 -20px 70px #000c}.sheet.show{transform:translateY(0)}.sheet-inner{max-width:720px;margin:auto}.grab{width:44px;height:4px;border-radius:5px;background:#ffffff25;margin:0 auto 14px}.sheet h2{margin:0 0 3px;font-size:21px}.sheet .hint{color:var(--muted);font-size:12px;margin-bottom:16px}.cartline{display:grid;grid-template-columns:1fr auto;gap:12px;padding:13px 0;border-bottom:1px solid #ffffff10}.cartline-name{font-weight:850;font-size:13px}.cartline-price{color:var(--muted);font-size:11px;margin-top:3px}.qty{display:flex;align-items:center;gap:8px}.qbtn{width:34px;height:34px;border-radius:11px;border:1px solid #ffffff18;background:#ffffff0c;color:#fff;font-weight:950;cursor:pointer}.qnum{width:26px;text-align:center;font-weight:900}.total{display:flex;justify-content:space-between;align-items:center;padding:16px 0;font-weight:950;font-size:17px}.fields{display:grid;gap:9px}.field{width:100%;border:1px solid #ffffff18;background:#020814b8;color:#fff;border-radius:14px;padding:12px 13px;outline:none}.field:focus{border-color:#00d4ff66}.send{width:100%;min-height:50px;margin-top:12px;border:0;border-radius:16px;background:#25d366;color:#03140a;font-weight:1000;cursor:pointer}.send:disabled{opacity:.45;cursor:not-allowed}.note{color:#6f849b;font-size:10.5px;line-height:1.4;margin:10px 2px 0}
+    .toast{position:fixed;z-index:50;left:50%;bottom:98px;transform:translate(-50%,20px);opacity:0;background:#10233a;color:#fff;border:1px solid #ffffff1c;border-radius:14px;padding:10px 14px;font-size:12px;transition:.2s;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}
+    @media(min-width:700px){.wrap{padding:28px 22px 60px}.hero{padding:26px}.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.item{border-radius:22px}.body{padding:15px}.name{font-size:15px}.detail{font-size:12px}}
+  </style>
 </head>
 <body>
-<main class="wrap">
-  <div class="brand">NUVORA</div>
-  <section id="app"><div class="empty">Cargando catálogo…</div></section>
-</main>
-<div id="cartBar" class="cartBar" aria-live="polite">
-  <div class="cartInfo"><div id="cartCount" class="cartCount"></div><div id="cartTotal" class="cartTotal"></div></div>
-  <button id="viewOrder" class="viewOrder" type="button">Ver pedido</button>
-</div>
+  <main class="wrap"><div class="topbrand"><span class="nmark">N</span>NUVORA</div><section id="app"></section></main>
+  <div id="cartbar" class="cartbar"><div class="cartmini"><strong id="cartcount">0 productos</strong><span id="carttotal">Total 0</span></div><button id="openCart" class="open-cart">Ver pedido</button></div>
+  <div id="shade" class="shade"></div><section id="sheet" class="sheet" aria-modal="true"><div class="sheet-inner"><div class="grab"></div><h2>Tu pedido</h2><div class="hint">Revisa cantidades antes de enviarlo al negocio.</div><div id="cartlines"></div><div class="total"><span>Total</span><span id="sheetTotal">0</span></div><div class="fields"><input id="clientName" class="field" autocomplete="name" placeholder="Tu nombre (opcional)"><textarea id="clientNote" class="field" rows="3" placeholder="Nota del pedido (opcional)"></textarea></div><button id="sendOrder" class="send">Enviar pedido por WhatsApp</button><div class="note">Nuvora no descuenta inventario al armar o enviar el pedido. El negocio confirma la venta antes de descontar stock, evitando ventas falsas o pérdidas de inventario.</div></div></section>
+  <div id="toast" class="toast">Agregado al pedido</div>
 <script>
 (async function(){
-  'use strict';
-  const root=document.getElementById('app');
-  const cartBar=document.getElementById('cartBar');
-  const cartCount=document.getElementById('cartCount');
-  const cartTotal=document.getElementById('cartTotal');
-  const viewOrder=document.getElementById('viewOrder');
-  const state={name:'Negocio',description:'',whatsapp:'',logo:'',products:[],qty:[]};
-
-  function decode64(raw){
-    let b64=String(raw||'').replace(/-/g,'+').replace(/_/g,'/');
-    while(b64.length%4)b64+='=';
-    const bytes=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));
-    return new TextDecoder().decode(bytes);
-  }
-  function validHttps(v){return typeof v==='string' && /^https:\/\//i.test(v)}
-  function normalize(raw){
-    const cloudStyle=Array.isArray(raw.products);
-    const source=cloudStyle?raw.products:(Array.isArray(raw.p)?raw.p:[]);
-    return {
-      name:String(raw.name||raw.n||'Negocio'),
-      description:String(raw.description||raw.d||''),
-      whatsapp:String(raw.whatsapp||raw.w||''),
-      logo:String(raw.logo||raw.l||''),
-      products:source.map((p,i)=> cloudStyle ? {
-        id:String(p.id||i),name:String(p.name||''),price:String(p.price||''),detail:String(p.detail||''),photo:String(p.photo||'')
-      } : {
-        id:String(i),name:String(p?.[0]||''),price:String(p?.[1]||''),detail:String(p?.[2]||''),photo:String(p?.[3]||'')
-      }).filter(p=>p.name.trim()!=='')
-    };
-  }
-  function parseAmount(text){
-    let s=String(text||'').replace(/[^0-9,.-]/g,'');
-    if(!s)return 0;
-    const lastComma=s.lastIndexOf(','), lastDot=s.lastIndexOf('.');
-    if(lastComma>=0 && lastDot>=0){
-      if(lastComma>lastDot)s=s.replace(/\./g,'').replace(',','.');
-      else s=s.replace(/,/g,'');
-    }else if(lastComma>=0){s=s.replace(',','.');}
-    const n=Number(s);return Number.isFinite(n)?n:0;
-  }
-  function moneyLabel(sample,value){
-    const raw=String(sample||'');
-    const m=raw.match(/^\s*([^0-9-]*?)\s*[-0-9]/);
-    const prefix=(m?.[1]||'').trim();
-    const comma=raw.includes(',')&&!raw.includes('.');
-    const n=value.toFixed(2).replace('.',comma?',':'.');
-    return (prefix?prefix+' ':'')+n;
-  }
-  function el(tag,cls,text){const x=document.createElement(tag);if(cls)x.className=cls;if(text!==undefined)x.textContent=text;return x}
-  function selected(){return state.products.map((p,i)=>({p,q:state.qty[i]||0,i})).filter(x=>x.q>0)}
-  function totalValue(){return selected().reduce((a,x)=>a+parseAmount(x.p.price)*x.q,0)}
-  function updateCart(){
-    const rows=selected(), count=rows.reduce((a,x)=>a+x.q,0);
-    cartBar.classList.toggle('on',count>0);
-    cartCount.textContent=count===1?'1 producto seleccionado':count+' productos seleccionados';
-    cartTotal.textContent=count?('Total: '+moneyLabel(rows[0]?.p.price,totalValue())):'';
-    const order=document.getElementById('order');
-    if(order?.classList.contains('on')) renderOrder();
-  }
-  function setQty(i,q){
-    state.qty[i]=Math.max(0,Math.min(99,q));
-    const card=document.querySelector('[data-index="'+i+'"]');
-    if(card){
-      const add=card.querySelector('.add'), qty=card.querySelector('.qty'), num=card.querySelector('.qty strong');
-      const on=state.qty[i]>0;add.classList.toggle('hidden',on);qty.classList.toggle('on',on);num.textContent=String(state.qty[i]);
-    }
-    updateCart();
-  }
-  function imageVisual(photo,name){
-    const box=el('div','visual');
-    const fallback=el('div','photoFallback','🛍️');box.appendChild(fallback);
-    if(validHttps(photo)){
-      const img=el('img','photo');img.alt=name;img.loading='lazy';img.decoding='async';img.referrerPolicy='no-referrer';
-      img.addEventListener('load',()=>{fallback.style.display='none'});
-      img.addEventListener('error',()=>{img.remove();fallback.style.display='grid'});
-      img.src=photo;box.insertBefore(img,fallback);
-    }
-    return box;
-  }
-  function buildCard(p,i){
-    const card=el('article','prod');card.dataset.index=String(i);card.appendChild(imageVisual(p.photo,p.name));
-    const body=el('div','prodBody');const top=el('div','prodTop');top.append(el('div','nm',p.name),el('div','pr',p.price));body.appendChild(top);
-    if(p.detail)body.appendChild(el('div','dt',p.detail));
-    const row=el('div','buyRow');const add=el('button','add','Agregar');add.type='button';add.addEventListener('click',()=>setQty(i,1));
-    const qty=el('div','qty');const minus=el('button','','−');minus.type='button';minus.setAttribute('aria-label','Quitar una unidad');minus.addEventListener('click',()=>setQty(i,(state.qty[i]||0)-1));
-    const num=el('strong','',String(state.qty[i]||0));const plus=el('button','','+');plus.type='button';plus.setAttribute('aria-label','Agregar una unidad');plus.addEventListener('click',()=>setQty(i,(state.qty[i]||0)+1));qty.append(minus,num,plus);row.append(add,qty);body.appendChild(row);card.appendChild(body);return card;
-  }
-  function orderText(){
-    const rows=selected();const customer=(document.getElementById('customer')?.value||'').trim();const note=(document.getElementById('note')?.value||'').trim();
-    const lines=['Hola, quiero hacer este pedido en '+state.name+':',''];
-    rows.forEach(x=>lines.push('• '+x.q+' × '+x.p.name+' — '+moneyLabel(x.p.price,parseAmount(x.p.price)*x.q)));
-    lines.push('','Total: '+moneyLabel(rows[0]?.p.price,totalValue()));
-    if(customer)lines.push('Nombre: '+customer);if(note)lines.push('Nota: '+note);lines.push('','Pedido enviado desde el catálogo de Nuvora.');return lines.join('\n');
-  }
-  function renderOrder(){
-    const order=document.getElementById('order');if(!order)return;const list=document.getElementById('orderList');list.replaceChildren();
-    const rows=selected();rows.forEach(x=>{const line=el('div','orderLine');const left=el('div');left.append(el('div','orderName',x.p.name),el('div','orderMeta','Cantidad: '+x.q));line.append(left,el('div','orderPrice',moneyLabel(x.p.price,parseAmount(x.p.price)*x.q)));list.appendChild(line)});
-    document.getElementById('orderTotal').textContent=rows.length?moneyLabel(rows[0].p.price,totalValue()):'0.00';
-  }
-  async function shareOrder(){
-    const text=orderText();const status=document.getElementById('status');
-    try{if(navigator.share){await navigator.share({title:'Pedido · '+state.name,text});status.textContent='Pedido compartido.';return}}catch(e){if(e?.name==='AbortError')return}
-    try{await navigator.clipboard.writeText(text);status.textContent='Pedido copiado. Ya puedes pegarlo en el chat.'}catch(_){status.textContent='Selecciona y copia el pedido manualmente.'}
-  }
-  function openWhatsApp(){
-    const digits=state.whatsapp.replace(/\D/g,'');const text=orderText();
-    if(digits){window.open('https://wa.me/'+digits+'?text='+encodeURIComponent(text),'_blank','noopener');}
-    else{shareOrder();}
-  }
-  function render(){
-    root.replaceChildren();document.title='Catálogo de '+state.name;
-    const hero=el('section','hero');const heroTop=el('div','heroTop');
-    if(validHttps(state.logo)){const img=el('img','logo');img.alt=state.name;img.src=state.logo;img.addEventListener('error',()=>{const m=el('div','mark',(state.name.trim()[0]||'N').toUpperCase());img.replaceWith(m)});heroTop.appendChild(img)}else heroTop.appendChild(el('div','mark',(state.name.trim()[0]||'N').toUpperCase()));
-    const copy=el('div','heroCopy');copy.append(el('div','eyebrow','CATÁLOGO'),el('h1','',state.name),el('p','desc',state.description||'Elige lo que quieras y envía tu pedido al negocio.'));heroTop.appendChild(copy);hero.appendChild(heroTop);
-    const digits=state.whatsapp.replace(/\D/g,'');if(digits){const actions=el('div','heroActions');const a=el('a','heroBtn wa','WhatsApp');a.href='https://wa.me/'+digits;a.target='_blank';a.rel='noopener';actions.appendChild(a);hero.appendChild(actions)}root.appendChild(hero);
-    const title=el('div','catalogTitle');title.append(el('h2','','Productos'),el('span','',state.products.length+' disponible'+(state.products.length===1?'':'s')));root.appendChild(title);
-    const grid=el('div','grid');if(!state.products.length)grid.appendChild(el('div','empty','Este catálogo todavía no tiene productos disponibles.'));else state.products.forEach((p,i)=>grid.appendChild(buildCard(p,i)));root.appendChild(grid);
-    const order=el('section','order');order.id='order';order.append(el('h2','','Tu pedido'),el('div','orderHint','Revisa cantidades antes de enviarlo.'));const list=el('div');list.id='orderList';order.appendChild(list);const total=el('div','total');total.append(el('span','','Total'),el('span','','0.00'));total.lastChild.id='orderTotal';order.appendChild(total);
-    const fields=el('div','fields');const customer=el('input','field');customer.id='customer';customer.placeholder='Tu nombre (opcional)';customer.autocomplete='name';const note=el('textarea','field');note.id='note';note.rows=2;note.placeholder='Nota para el negocio (opcional)';fields.append(customer,note);order.appendChild(fields);
-    const actions=el('div','actions');const send=el('button','primaryAction '+(digits?'':'share'),digits?'Enviar pedido por WhatsApp':'Compartir pedido');send.type='button';send.addEventListener('click',openWhatsApp);const share=el('button','ghostAction','Compartir');share.type='button';share.addEventListener('click',shareOrder);const copyBtn=el('button','ghostAction','Copiar pedido');copyBtn.type='button';copyBtn.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(orderText());document.getElementById('status').textContent='Pedido copiado.'}catch(_){shareOrder()}});actions.append(send,share,copyBtn);order.appendChild(actions);const status=el('div','status');status.id='status';order.appendChild(status);root.appendChild(order);
-    const footer=el('footer');const cta=el('a','cta','Crea tu catálogo gratis con Nuvora');cta.href='https://nuvora-ve.github.io/';footer.append(cta,el('div','foot','Nuvora · Tu plata y tu negocio bajo control'));root.appendChild(footer);
-  }
-  viewOrder.addEventListener('click',()=>{const order=document.getElementById('order');if(!order)return;order.classList.add('on');renderOrder();order.scrollIntoView({behavior:'smooth',block:'start'})});
-  try{
-    const h=location.hash||'';let raw;
-    const u=h.match(/(?:^#|&)u=([^&]+)/);
-    if(u){const url=decode64(u[1]);if(!validHttps(url))throw new Error('Enlace de catálogo no válido.');const res=await fetch(url,{cache:'no-store'});if(!res.ok)throw new Error('No se pudo cargar el catálogo.');raw=await res.json();}
-    else{const d=h.match(/(?:^#|&)d=([^&]+)/);if(!d)throw new Error('El enlace del catálogo está incompleto.');raw=JSON.parse(decode64(d[1]));}
-    const data=normalize(raw);Object.assign(state,data);state.qty=new Array(state.products.length).fill(0);render();
-  }catch(e){root.replaceChildren();const box=el('div','error');box.append(el('h2','','Catálogo no disponible'),el('p','',e?.message||'No se pudo abrir el catálogo.'));root.appendChild(box)}
+  const root=document.getElementById('app'), cartbar=document.getElementById('cartbar'), sheet=document.getElementById('sheet'), shade=document.getElementById('shade'), lines=document.getElementById('cartlines'), toast=document.getElementById('toast');
+  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const decode64=raw=>{let b64=raw.replace(/-/g,'+').replace(/_/g,'/');while(b64.length%4)b64+='=';const bytes=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));return new TextDecoder().decode(bytes)};
+  const cart=new Map(); let ctx={name:'Negocio',digits:'',currency:'$',products:[]};
+  const parseAmount=p=>{if(Number.isFinite(Number(p.amount)))return Number(p.amount);const raw=String(p.price||'').replace(/[^0-9,.-]/g,'');if(!raw)return 0;const clean=raw.includes(',')&&raw.includes('.')?(raw.lastIndexOf(',')>raw.lastIndexOf('.')?raw.replace(/\./g,'').replace(',','.') : raw.replace(/,/g,'')):raw.replace(',','.');return Number(clean)||0};
+  const money=n=>`${ctx.currency} ${Number(n||0).toLocaleString('es-VE',{minimumFractionDigits:2,maximumFractionDigits:2})}`;
+  const norm=(p,i)=>{if(Array.isArray(p))return {id:String(p[5]||i),name:p[0]||'',price:p[1]||'',detail:p[2]||'',photo:p[3]||'',stock:Number(p[4]??999999),amount:Number(p[6]??NaN),currency:p[7]||''};return {id:String(p.id||i),name:p.name||'',price:p.price||'',detail:p.detail||'',photo:p.photo||'',stock:Number(p.stock??999999),amount:Number(p.amount??NaN),currency:p.currency||''}};
+  const showToast=()=>{toast.classList.add('show');clearTimeout(showToast.t);showToast.t=setTimeout(()=>toast.classList.remove('show'),1300)};
+  function updateCart(){let units=0,total=0;for(const [id,q] of cart){const p=ctx.products.find(x=>x.id===id);if(!p)continue;units+=q;total+=parseAmount(p)*q}document.getElementById('cartcount').textContent=`${units} ${units===1?'producto':'productos'}`;document.getElementById('carttotal').textContent=`Total ${money(total)}`;document.getElementById('sheetTotal').textContent=money(total);cartbar.classList.toggle('show',units>0);renderCart()}
+  function renderCart(){lines.innerHTML='';for(const [id,q] of cart){const p=ctx.products.find(x=>x.id===id);if(!p)continue;const row=document.createElement('div');row.className='cartline';row.innerHTML=`<div><div class="cartline-name">${esc(p.name)}</div><div class="cartline-price">${esc(p.price||money(parseAmount(p)))} c/u</div></div><div class="qty"><button class="qbtn" data-act="minus">−</button><div class="qnum">${q}</div><button class="qbtn" data-act="plus">+</button></div>`;row.querySelector('[data-act=minus]').onclick=()=>setQty(id,q-1);row.querySelector('[data-act=plus]').onclick=()=>setQty(id,q+1);lines.appendChild(row)}document.getElementById('sendOrder').disabled=!ctx.digits||cart.size===0}
+  function setQty(id,q){const p=ctx.products.find(x=>x.id===id);if(!p)return;const max=Math.max(0,Math.floor(Number.isFinite(p.stock)?p.stock:999999));if(q<=0)cart.delete(id);else cart.set(id,Math.min(q,max||0));updateCart()}
+  function openSheet(){shade.classList.add('show');sheet.classList.add('show');document.body.style.overflow='hidden'} function closeSheet(){shade.classList.remove('show');sheet.classList.remove('show');document.body.style.overflow=''}
+  document.getElementById('openCart').onclick=openSheet; shade.onclick=closeSheet;
+  document.getElementById('sendOrder').onclick=()=>{if(!ctx.digits||!cart.size)return;const client=document.getElementById('clientName').value.trim(),note=document.getElementById('clientNote').value.trim();let total=0,units=0;const parts=[];for(const [id,q] of cart){const p=ctx.products.find(x=>x.id===id);if(!p)continue;const subtotal=parseAmount(p)*q;total+=subtotal;units+=q;parts.push(`• ${q} x ${p.name} — ${money(subtotal)}`)}const msg=[`Hola, quiero hacer este pedido en ${ctx.name}:`,'',...parts,'',`Total: ${money(total)}`,client?`Nombre: ${client}`:'',note?`Nota: ${note}`:'','',`Pedido preparado desde el catálogo de Nuvora (${units} ${units===1?'producto':'productos'}).`].filter(Boolean).join('\n');window.open(`https://wa.me/${ctx.digits}?text=${encodeURIComponent(msg)}`,'_blank','noopener')};
+  const render=(name,products,meta={})=>{const logo=meta.logo||'',desc=meta.description||'Productos y precios compartidos desde Nuvora.',digits=String(meta.whatsapp||'').replace(/\D/g,'');ctx={name:name||'Negocio',digits,currency:meta.currency||'',products:products.map(norm)};if(!ctx.currency){const first=ctx.products[0];ctx.currency=first?.currency||String(first?.price||'').trim().split(/\s+/)[0]||'$'}
+    const cards=ctx.products.map((p,i)=>{const amount=parseAmount(p),stock=Number.isFinite(p.stock)?p.stock:999999,max=Math.max(0,Math.floor(stock)),out=max<=0,visual=p.photo?`<img class="photo" src="${esc(p.photo)}" alt="${esc(p.name)}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><div class="ph" style="display:none">▦</div>`:`<div class="ph">▦</div>`;return `<article class="item">${visual}<div class="body"><div class="name">${esc(p.name)}</div><div class="price">${esc(p.price||money(amount))}</div>${p.detail?`<div class="detail">${esc(p.detail)}</div>`:''}<div class="stock ${out?'out':''}">${out?'Agotado':(stock<999999?`Disponibles: ${Math.floor(stock)}`:'Disponible')}</div><button class="add" data-add="${esc(p.id)}" ${out?'disabled':''}>${out?'Sin stock':'Agregar'}</button></div></article>`}).join('');
+    const mark=logo?`<img class="logo" src="${esc(logo)}" alt="${esc(name||'Negocio')}" onerror="this.outerHTML='<div class=\'initial\'>${esc((name||'N').trim().charAt(0).toUpperCase()||'N')}</div>'">`:`<div class="initial">${esc((name||'N').trim().charAt(0).toUpperCase()||'N')}</div>`;
+    root.innerHTML=`<section class="hero"><div class="hero-main">${mark}<div class="hero-copy"><div class="eyebrow">CATÁLOGO DIGITAL</div><h1>${esc(name||'Negocio')}</h1><p class="sub">${esc(desc)}</p></div></div>${digits?`<a class="contact" target="_blank" rel="noopener" href="https://wa.me/${esc(digits)}">Escribir al negocio</a>`:''}</section><div class="section-head"><h2>Productos</h2><span>${ctx.products.length} ${ctx.products.length===1?'producto':'productos'}</span></div><div class="grid">${cards||'<div class="empty" style="grid-column:1/-1">Este catálogo todavía no tiene productos disponibles.</div>'}</div><a class="cta" href="https://nuvora-ve.github.io/">Crea tu catálogo con Nuvora</a><div class="foot">Catálogo impulsado por Nuvora · Tu dinero y tu negocio bajo control</div>`;
+    root.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>{const id=b.getAttribute('data-add');const p=ctx.products.find(x=>x.id===id);if(!p)return;const max=Math.max(0,Math.floor(Number.isFinite(p.stock)?p.stock:999999));const q=cart.get(id)||0;if(q<max){cart.set(id,q+1);updateCart();showToast()}}); updateCart();
+  };
+  try{const cloud=location.hash.match(/(?:^#|&)u=([^&]+)/);if(cloud){root.innerHTML='<div class="hero"><div class="eyebrow">NUVORA</div><h1>Cargando catálogo…</h1><p class="sub">Un momento.</p></div>';const url=decode64(cloud[1]);if(!/^https:\/\//i.test(url))throw new Error('Enlace de catálogo no válido.');const res=await fetch(url,{cache:'no-store'});if(!res.ok)throw new Error('No se pudo cargar el catálogo.');const data=await res.json();render(data.name,Array.isArray(data.products)?data.products:[],{logo:data.logo||'',description:data.description||'',whatsapp:data.whatsapp||'',currency:data.currency||''});return}const local=location.hash.match(/(?:^#|&)d=([^&]+)/);if(!local)throw new Error('No se encontró información del catálogo.');const data=JSON.parse(decode64(local[1]));render(data.n,Array.isArray(data.p)?data.p:[],{logo:data.l||'',description:data.d||'',whatsapp:data.w||'',currency:data.c||''})}catch(e){root.innerHTML=`<div class="hero error"><h1>Catálogo no disponible</h1><p>${esc(e.message)}</p></div><a class="cta" href="https://nuvora-ve.github.io/">Conoce Nuvora</a>`}
 })();
 </script>
 </body>
