@@ -2,71 +2,181 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#020409">
 <title>Catálogo · Nuvora</title>
 <style>
-  *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,sans-serif}
-  body{background:#020409;color:#EAF2FF;min-height:100vh;padding:18px 14px 60px}
-  .wrap{max-width:560px;margin:0 auto}
-  header{text-align:center;padding:22px 0 18px}
-  .brand{font-weight:900;letter-spacing:6px;font-size:14px;color:#6FA8FF;text-shadow:0 0 18px rgba(77,166,255,.55)}
-  h1{font-size:24px;font-weight:900;margin-top:10px}
-  .sub{color:#8EA3C8;font-size:13px;margin-top:6px}
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
-  .prod{background:rgba(8,16,34,.75);border:1px solid rgba(90,170,255,.20);border-radius:16px;padding:14px;backdrop-filter:blur(8px)}
-  .prod .phf{width:100%;height:120px;object-fit:cover;border-radius:12px;margin-bottom:10px;background:#0a1428}
-  .prod .ph{height:74px;border-radius:12px;background:linear-gradient(135deg,rgba(44,229,155,.14),rgba(77,166,255,.14));display:flex;align-items:center;justify-content:center;font-size:30px;margin-bottom:10px}
-  .prod .nm{font-weight:800;font-size:14px}
-  .prod .pr{color:#2CE59B;font-weight:900;font-size:16px;margin-top:3px}
-  .prod .dt{color:#8EA3C8;font-size:11.5px;margin-top:5px;line-height:1.4}
-  .empty{text-align:center;color:#8EA3C8;padding:60px 20px;font-size:14px;line-height:1.6}
-  footer{margin-top:34px;text-align:center}
-  footer .cta{display:inline-block;background:linear-gradient(135deg,#00D4FF,#4DA6FF);color:#02131F;font-weight:900;padding:12px 22px;border-radius:14px;text-decoration:none;font-size:14px;box-shadow:0 8px 26px rgba(0,212,255,.35)}
-  footer p{color:#8EA3C8;font-size:11.5px;margin-top:12px}
+:root{color-scheme:dark;--bg:#020409;--surface:#08111e;--surface2:#0b1727;--line:#173451;--text:#f4f8ff;--muted:#91a5c3;--cyan:#16d5ff;--blue:#4da6ff;--green:#2ce59b;--danger:#ff6b7a}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(circle at 50% -15%,#0a2948 0,transparent 35%),linear-gradient(180deg,#020409,#04101d 70%,#020409);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh;padding:env(safe-area-inset-top) 0 calc(104px + env(safe-area-inset-bottom))}
+button,input,textarea{font:inherit}
+.wrap{width:min(760px,100%);margin:0 auto;padding:20px 15px 36px}
+.brand{text-align:center;font-weight:950;letter-spacing:.32em;font-size:15px;color:#79b0ff;margin:14px 0 20px;text-shadow:0 0 18px #4da6ff55}
+.hero{padding:20px;border:1px solid #ffffff1c;border-radius:24px;background:linear-gradient(135deg,#00d4ff15,#4da6ff09);box-shadow:0 16px 44px #0007}
+.heroTop{display:flex;gap:14px;align-items:center}
+.logo,.mark{width:66px;height:66px;border-radius:19px;flex:0 0 66px;border:1px solid #ffffff20;background:#071421}
+.logo{object-fit:cover}
+.mark{display:grid;place-items:center;font-weight:950;font-size:25px;color:var(--cyan);background:linear-gradient(135deg,#00d4ff1b,#4da6ff12)}
+.heroCopy{min-width:0;flex:1}.eyebrow{font-size:11px;font-weight:850;letter-spacing:.15em;color:var(--cyan)}
+h1{font-size:clamp(27px,7vw,40px);line-height:1.05;margin:7px 0 5px}.desc{margin:0;color:var(--muted);font-size:14px;line-height:1.45}
+.heroActions{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}.heroBtn{border:0;border-radius:13px;padding:10px 13px;font-weight:850;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}.wa{background:#25d366;color:#04160b}.secondary{background:#ffffff0d;color:var(--text);border:1px solid #ffffff18}
+.catalogTitle{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:23px 2px 11px}.catalogTitle h2{font-size:20px;margin:0}.catalogTitle span{color:var(--muted);font-size:12px}
+.grid{display:grid;grid-template-columns:1fr;gap:14px}
+.prod{overflow:hidden;border:1px solid #ffffff18;background:#08111ee8;border-radius:20px;box-shadow:0 10px 28px #0005}
+.visual{position:relative;width:100%;aspect-ratio:16/10;background:linear-gradient(135deg,#08202b,#0d1c34);overflow:hidden}
+.photo{width:100%;height:100%;object-fit:cover;display:block}.photoFallback{position:absolute;inset:0;display:grid;place-items:center;font-size:42px;color:#7890ad;background:linear-gradient(135deg,#00d4ff0e,#4da6ff0b)}
+.prodBody{padding:15px}.prodTop{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.nm{font-weight:900;font-size:17px;line-height:1.22}.pr{font-weight:950;color:var(--green);font-size:17px;white-space:nowrap}.dt{color:var(--muted);font-size:13px;line-height:1.5;margin-top:8px}
+.buyRow{margin-top:14px;display:flex;align-items:center;gap:9px}.add{flex:1;border:0;border-radius:13px;background:linear-gradient(135deg,var(--cyan),var(--blue));color:#00131e;font-weight:950;padding:11px 14px;cursor:pointer}.qty{display:none;align-items:center;gap:9px}.qty.on{display:flex}.qty button{width:38px;height:38px;border-radius:12px;border:1px solid #ffffff1b;background:#ffffff0d;color:var(--text);font-size:20px;font-weight:900;cursor:pointer}.qty strong{min-width:26px;text-align:center;font-size:16px}.add.hidden{display:none}
+.empty,.error{text-align:center;color:var(--muted);padding:45px 18px;border:1px dashed #ffffff1c;border-radius:20px;background:#ffffff05}
+.order{display:none;margin-top:24px;padding:18px;border-radius:22px;background:#07111f;border:1px solid #1a3b59;box-shadow:0 16px 40px #0006}.order.on{display:block}.order h2{margin:0 0 4px;font-size:21px}.orderHint{color:var(--muted);font-size:12px;margin-bottom:14px}.orderLine{display:grid;grid-template-columns:1fr auto;gap:10px;padding:10px 0;border-bottom:1px solid #ffffff0f}.orderLine:last-child{border-bottom:0}.orderName{font-weight:800}.orderMeta{color:var(--muted);font-size:12px;margin-top:2px}.orderPrice{font-weight:900;color:var(--green)}.total{display:flex;justify-content:space-between;gap:12px;align-items:center;margin:14px 0;font-size:18px;font-weight:950}.fields{display:grid;gap:9px}.field{width:100%;border:1px solid #ffffff1d;background:#020914;color:var(--text);border-radius:13px;padding:12px 13px;outline:none}.field:focus{border-color:#16d5ff99;box-shadow:0 0 0 3px #16d5ff15}.actions{display:grid;gap:9px;margin-top:12px}.primaryAction,.ghostAction{border:0;border-radius:14px;padding:13px 15px;font-weight:950;cursor:pointer}.primaryAction{background:#25d366;color:#03170b}.primaryAction.share{background:linear-gradient(135deg,var(--cyan),var(--blue));color:#00131e}.ghostAction{background:#ffffff0d;color:var(--text);border:1px solid #ffffff18}.status{min-height:18px;text-align:center;color:var(--green);font-size:12px;margin-top:8px}
+footer{text-align:center;margin-top:28px}.cta{display:block;text-decoration:none;border-radius:16px;padding:14px 17px;background:linear-gradient(135deg,var(--cyan),var(--blue));color:#00131e;font-weight:950}.foot{color:#6f8197;font-size:11px;margin-top:12px;line-height:1.45}
+.cartBar{position:fixed;z-index:30;left:50%;bottom:calc(12px + env(safe-area-inset-bottom));transform:translateX(-50%);width:min(730px,calc(100% - 22px));display:none;align-items:center;justify-content:space-between;gap:12px;padding:11px 12px 11px 15px;border:1px solid #ffffff22;border-radius:19px;background:#07111ff2;backdrop-filter:blur(18px);box-shadow:0 18px 50px #000b}.cartBar.on{display:flex}.cartInfo{min-width:0}.cartCount{font-weight:900;font-size:14px}.cartTotal{font-size:12px;color:var(--muted);margin-top:2px}.viewOrder{border:0;border-radius:13px;padding:11px 14px;background:linear-gradient(135deg,var(--cyan),var(--blue));color:#00131e;font-weight:950;cursor:pointer;white-space:nowrap}
+@media(min-width:560px){.grid{grid-template-columns:1fr 1fr}.prod{display:flex;flex-direction:column}.prodBody{display:flex;flex-direction:column;flex:1}.buyRow{margin-top:auto;padding-top:14px}.actions{grid-template-columns:1fr 1fr}.actions .primaryAction{grid-column:1/-1}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <div class="brand">NUVORA</div>
-    <h1 id="biz">Catálogo</h1>
-    <div class="sub">Pide el tuyo escribiendo al negocio</div>
-  </header>
-  <div class="grid" id="grid"></div>
-  <footer>
-    <a class="cta" href="https://nuvora-ve.github.io">Crea tu catálogo gratis con Nuvora</a>
-    <p>Nuvora — tu plata y tu negocio bajo control · nuvora-ve.github.io</p>
-  </footer>
+<main class="wrap">
+  <div class="brand">NUVORA</div>
+  <section id="app"><div class="empty">Cargando catálogo…</div></section>
+</main>
+<div id="cartBar" class="cartBar" aria-live="polite">
+  <div class="cartInfo"><div id="cartCount" class="cartCount"></div><div id="cartTotal" class="cartTotal"></div></div>
+  <button id="viewOrder" class="viewOrder" type="button">Ver pedido</button>
 </div>
 <script>
-(function(){
-  var grid=document.getElementById('grid');
-  try{
-    var h=location.hash||'';
-    var m=h.match(/#d=([A-Za-z0-9\-_]+)/);
-    if(!m) throw 0;
-    var b64=m[1].replace(/-/g,'+').replace(/_/g,'/');while(b64.length%4)b64+='=';
-    var data=JSON.parse(decodeURIComponent(escape(atob(b64))));
-    if(data.n) document.getElementById('biz').textContent=data.n;
-    document.title='Catálogo de '+(data.n||'Nuvora');
-    var items=data.p||[];
-    if(!items.length) throw 0;
-    grid.innerHTML=items.map(function(it){
-      var foto=(it[3]&&/^https:\/\//.test(it[3]))?it[3]:'';
-      return '<div class="prod">'+
-        (foto?'<img class="phf" src="'+foto+'" alt="" loading="lazy">':'<div class="ph">🛍️</div>')+
-        '<div class="nm"></div><div class="pr"></div>'+
-        (it[2]?'<div class="dt"></div>':'')+'</div>';
-    }).join('');
-    items.forEach(function(it,i){
-      var el=grid.children[i];
-      el.querySelector('.nm').textContent=it[0];
-      el.querySelector('.pr').textContent=it[1];
-      if(it[2]) el.querySelector('.dt').textContent=it[2];
-    });
-  }catch(e){
-    grid.innerHTML='<div class="empty" style="grid-column:1/-1">Este catálogo no tiene productos o el enlace está incompleto.<br>Pídele al negocio que te envíe el enlace completo desde Nuvora.</div>';
+(async function(){
+  'use strict';
+  const root=document.getElementById('app');
+  const cartBar=document.getElementById('cartBar');
+  const cartCount=document.getElementById('cartCount');
+  const cartTotal=document.getElementById('cartTotal');
+  const viewOrder=document.getElementById('viewOrder');
+  const state={name:'Negocio',description:'',whatsapp:'',logo:'',products:[],qty:[]};
+
+  function decode64(raw){
+    let b64=String(raw||'').replace(/-/g,'+').replace(/_/g,'/');
+    while(b64.length%4)b64+='=';
+    const bytes=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));
+    return new TextDecoder().decode(bytes);
   }
+  function validHttps(v){return typeof v==='string' && /^https:\/\//i.test(v)}
+  function normalize(raw){
+    const cloudStyle=Array.isArray(raw.products);
+    const source=cloudStyle?raw.products:(Array.isArray(raw.p)?raw.p:[]);
+    return {
+      name:String(raw.name||raw.n||'Negocio'),
+      description:String(raw.description||raw.d||''),
+      whatsapp:String(raw.whatsapp||raw.w||''),
+      logo:String(raw.logo||raw.l||''),
+      products:source.map((p,i)=> cloudStyle ? {
+        id:String(p.id||i),name:String(p.name||''),price:String(p.price||''),detail:String(p.detail||''),photo:String(p.photo||'')
+      } : {
+        id:String(i),name:String(p?.[0]||''),price:String(p?.[1]||''),detail:String(p?.[2]||''),photo:String(p?.[3]||'')
+      }).filter(p=>p.name.trim()!=='')
+    };
+  }
+  function parseAmount(text){
+    let s=String(text||'').replace(/[^0-9,.-]/g,'');
+    if(!s)return 0;
+    const lastComma=s.lastIndexOf(','), lastDot=s.lastIndexOf('.');
+    if(lastComma>=0 && lastDot>=0){
+      if(lastComma>lastDot)s=s.replace(/\./g,'').replace(',','.');
+      else s=s.replace(/,/g,'');
+    }else if(lastComma>=0){s=s.replace(',','.');}
+    const n=Number(s);return Number.isFinite(n)?n:0;
+  }
+  function moneyLabel(sample,value){
+    const raw=String(sample||'');
+    const m=raw.match(/^\s*([^0-9-]*?)\s*[-0-9]/);
+    const prefix=(m?.[1]||'').trim();
+    const comma=raw.includes(',')&&!raw.includes('.');
+    const n=value.toFixed(2).replace('.',comma?',':'.');
+    return (prefix?prefix+' ':'')+n;
+  }
+  function el(tag,cls,text){const x=document.createElement(tag);if(cls)x.className=cls;if(text!==undefined)x.textContent=text;return x}
+  function selected(){return state.products.map((p,i)=>({p,q:state.qty[i]||0,i})).filter(x=>x.q>0)}
+  function totalValue(){return selected().reduce((a,x)=>a+parseAmount(x.p.price)*x.q,0)}
+  function updateCart(){
+    const rows=selected(), count=rows.reduce((a,x)=>a+x.q,0);
+    cartBar.classList.toggle('on',count>0);
+    cartCount.textContent=count===1?'1 producto seleccionado':count+' productos seleccionados';
+    cartTotal.textContent=count?('Total: '+moneyLabel(rows[0]?.p.price,totalValue())):'';
+    const order=document.getElementById('order');
+    if(order?.classList.contains('on')) renderOrder();
+  }
+  function setQty(i,q){
+    state.qty[i]=Math.max(0,Math.min(99,q));
+    const card=document.querySelector('[data-index="'+i+'"]');
+    if(card){
+      const add=card.querySelector('.add'), qty=card.querySelector('.qty'), num=card.querySelector('.qty strong');
+      const on=state.qty[i]>0;add.classList.toggle('hidden',on);qty.classList.toggle('on',on);num.textContent=String(state.qty[i]);
+    }
+    updateCart();
+  }
+  function imageVisual(photo,name){
+    const box=el('div','visual');
+    const fallback=el('div','photoFallback','🛍️');box.appendChild(fallback);
+    if(validHttps(photo)){
+      const img=el('img','photo');img.alt=name;img.loading='lazy';img.decoding='async';img.referrerPolicy='no-referrer';
+      img.addEventListener('load',()=>{fallback.style.display='none'});
+      img.addEventListener('error',()=>{img.remove();fallback.style.display='grid'});
+      img.src=photo;box.insertBefore(img,fallback);
+    }
+    return box;
+  }
+  function buildCard(p,i){
+    const card=el('article','prod');card.dataset.index=String(i);card.appendChild(imageVisual(p.photo,p.name));
+    const body=el('div','prodBody');const top=el('div','prodTop');top.append(el('div','nm',p.name),el('div','pr',p.price));body.appendChild(top);
+    if(p.detail)body.appendChild(el('div','dt',p.detail));
+    const row=el('div','buyRow');const add=el('button','add','Agregar');add.type='button';add.addEventListener('click',()=>setQty(i,1));
+    const qty=el('div','qty');const minus=el('button','','−');minus.type='button';minus.setAttribute('aria-label','Quitar una unidad');minus.addEventListener('click',()=>setQty(i,(state.qty[i]||0)-1));
+    const num=el('strong','',String(state.qty[i]||0));const plus=el('button','','+');plus.type='button';plus.setAttribute('aria-label','Agregar una unidad');plus.addEventListener('click',()=>setQty(i,(state.qty[i]||0)+1));qty.append(minus,num,plus);row.append(add,qty);body.appendChild(row);card.appendChild(body);return card;
+  }
+  function orderText(){
+    const rows=selected();const customer=(document.getElementById('customer')?.value||'').trim();const note=(document.getElementById('note')?.value||'').trim();
+    const lines=['Hola, quiero hacer este pedido en '+state.name+':',''];
+    rows.forEach(x=>lines.push('• '+x.q+' × '+x.p.name+' — '+moneyLabel(x.p.price,parseAmount(x.p.price)*x.q)));
+    lines.push('','Total: '+moneyLabel(rows[0]?.p.price,totalValue()));
+    if(customer)lines.push('Nombre: '+customer);if(note)lines.push('Nota: '+note);lines.push('','Pedido enviado desde el catálogo de Nuvora.');return lines.join('\n');
+  }
+  function renderOrder(){
+    const order=document.getElementById('order');if(!order)return;const list=document.getElementById('orderList');list.replaceChildren();
+    const rows=selected();rows.forEach(x=>{const line=el('div','orderLine');const left=el('div');left.append(el('div','orderName',x.p.name),el('div','orderMeta','Cantidad: '+x.q));line.append(left,el('div','orderPrice',moneyLabel(x.p.price,parseAmount(x.p.price)*x.q)));list.appendChild(line)});
+    document.getElementById('orderTotal').textContent=rows.length?moneyLabel(rows[0].p.price,totalValue()):'0.00';
+  }
+  async function shareOrder(){
+    const text=orderText();const status=document.getElementById('status');
+    try{if(navigator.share){await navigator.share({title:'Pedido · '+state.name,text});status.textContent='Pedido compartido.';return}}catch(e){if(e?.name==='AbortError')return}
+    try{await navigator.clipboard.writeText(text);status.textContent='Pedido copiado. Ya puedes pegarlo en el chat.'}catch(_){status.textContent='Selecciona y copia el pedido manualmente.'}
+  }
+  function openWhatsApp(){
+    const digits=state.whatsapp.replace(/\D/g,'');const text=orderText();
+    if(digits){window.open('https://wa.me/'+digits+'?text='+encodeURIComponent(text),'_blank','noopener');}
+    else{shareOrder();}
+  }
+  function render(){
+    root.replaceChildren();document.title='Catálogo de '+state.name;
+    const hero=el('section','hero');const heroTop=el('div','heroTop');
+    if(validHttps(state.logo)){const img=el('img','logo');img.alt=state.name;img.src=state.logo;img.addEventListener('error',()=>{const m=el('div','mark',(state.name.trim()[0]||'N').toUpperCase());img.replaceWith(m)});heroTop.appendChild(img)}else heroTop.appendChild(el('div','mark',(state.name.trim()[0]||'N').toUpperCase()));
+    const copy=el('div','heroCopy');copy.append(el('div','eyebrow','CATÁLOGO'),el('h1','',state.name),el('p','desc',state.description||'Elige lo que quieras y envía tu pedido al negocio.'));heroTop.appendChild(copy);hero.appendChild(heroTop);
+    const digits=state.whatsapp.replace(/\D/g,'');if(digits){const actions=el('div','heroActions');const a=el('a','heroBtn wa','WhatsApp');a.href='https://wa.me/'+digits;a.target='_blank';a.rel='noopener';actions.appendChild(a);hero.appendChild(actions)}root.appendChild(hero);
+    const title=el('div','catalogTitle');title.append(el('h2','','Productos'),el('span','',state.products.length+' disponible'+(state.products.length===1?'':'s')));root.appendChild(title);
+    const grid=el('div','grid');if(!state.products.length)grid.appendChild(el('div','empty','Este catálogo todavía no tiene productos disponibles.'));else state.products.forEach((p,i)=>grid.appendChild(buildCard(p,i)));root.appendChild(grid);
+    const order=el('section','order');order.id='order';order.append(el('h2','','Tu pedido'),el('div','orderHint','Revisa cantidades antes de enviarlo.'));const list=el('div');list.id='orderList';order.appendChild(list);const total=el('div','total');total.append(el('span','','Total'),el('span','','0.00'));total.lastChild.id='orderTotal';order.appendChild(total);
+    const fields=el('div','fields');const customer=el('input','field');customer.id='customer';customer.placeholder='Tu nombre (opcional)';customer.autocomplete='name';const note=el('textarea','field');note.id='note';note.rows=2;note.placeholder='Nota para el negocio (opcional)';fields.append(customer,note);order.appendChild(fields);
+    const actions=el('div','actions');const send=el('button','primaryAction '+(digits?'':'share'),digits?'Enviar pedido por WhatsApp':'Compartir pedido');send.type='button';send.addEventListener('click',openWhatsApp);const share=el('button','ghostAction','Compartir');share.type='button';share.addEventListener('click',shareOrder);const copyBtn=el('button','ghostAction','Copiar pedido');copyBtn.type='button';copyBtn.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(orderText());document.getElementById('status').textContent='Pedido copiado.'}catch(_){shareOrder()}});actions.append(send,share,copyBtn);order.appendChild(actions);const status=el('div','status');status.id='status';order.appendChild(status);root.appendChild(order);
+    const footer=el('footer');const cta=el('a','cta','Crea tu catálogo gratis con Nuvora');cta.href='https://nuvora-ve.github.io/';footer.append(cta,el('div','foot','Nuvora · Tu plata y tu negocio bajo control'));root.appendChild(footer);
+  }
+  viewOrder.addEventListener('click',()=>{const order=document.getElementById('order');if(!order)return;order.classList.add('on');renderOrder();order.scrollIntoView({behavior:'smooth',block:'start'})});
+  try{
+    const h=location.hash||'';let raw;
+    const u=h.match(/(?:^#|&)u=([^&]+)/);
+    if(u){const url=decode64(u[1]);if(!validHttps(url))throw new Error('Enlace de catálogo no válido.');const res=await fetch(url,{cache:'no-store'});if(!res.ok)throw new Error('No se pudo cargar el catálogo.');raw=await res.json();}
+    else{const d=h.match(/(?:^#|&)d=([^&]+)/);if(!d)throw new Error('El enlace del catálogo está incompleto.');raw=JSON.parse(decode64(d[1]));}
+    const data=normalize(raw);Object.assign(state,data);state.qty=new Array(state.products.length).fill(0);render();
+  }catch(e){root.replaceChildren();const box=el('div','error');box.append(el('h2','','Catálogo no disponible'),el('p','',e?.message||'No se pudo abrir el catálogo.'));root.appendChild(box)}
 })();
 </script>
 </body>
