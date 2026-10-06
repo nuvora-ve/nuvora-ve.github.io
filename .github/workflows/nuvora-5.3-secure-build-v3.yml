@@ -1,0 +1,104 @@
+name: Nuvora 5.3 secure build v3
+
+on:
+  push:
+    paths:
+      - '.github/workflows/nuvora-5.3-secure-build-v3.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - name: Checkout transport repository
+        uses: actions/checkout@v4
+
+      - name: Create ephemeral encryption key
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -out /tmp/nuvora-private.pem 2>/dev/null
+          openssl pkey -in /tmp/nuvora-private.pem -pubout -out /tmp/nuvora-public.pem 2>/dev/null
+          echo 'Ephemeral key created; private key remains only on this runner.'
+
+      - name: Publish ephemeral public key
+        uses: actions/upload-artifact@v4
+        with:
+          name: nuvora-ephemeral-public-key-v3
+          retention-days: 1
+          path: /tmp/nuvora-public.pem
+
+      - name: Wait for encrypted source chunks
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          API='https://api.github.com/repos/nuvora-ve/nuvora-ve.github.io/contents/.nuvora-secure-build-v3'
+          for attempt in $(seq 1 150); do
+            if curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H 'Accept: application/vnd.github.raw+json' "$API/ready?ref=main&ts=$attempt" -o /tmp/ready; then
+              echo 'Encrypted payload marker received.'
+              break
+            fi
+            if [ "$attempt" = 150 ]; then echo 'Timed out waiting for payload.'; exit 1; fi
+            sleep 8
+          done
+          : > /tmp/payload.b64
+          for i in 00 01 02 03 04 05 06 07 08 09; do
+            curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H 'Accept: application/vnd.github.raw+json' "$API/payload.$i.b64?ref=main" >> /tmp/payload.b64
+          done
+          curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H 'Accept: application/vnd.github.raw+json' "$API/key.b64?ref=main" -o /tmp/key.b64
+          base64 -d /tmp/key.b64 > /tmp/key.enc
+          base64 -d /tmp/payload.b64 > /tmp/payload.enc
+          openssl pkeyutl -decrypt -inkey /tmp/nuvora-private.pem -in /tmp/key.enc -out /tmp/aes-pass.txt -pkeyopt rsa_padding_mode:oaep -pkeyopt rsa_oaep_md:sha256
+          openssl enc -d -aes-256-cbc -pbkdf2 -iter 200000 -in /tmp/payload.enc -out /tmp/nuvora-source.zip -pass file:/tmp/aes-pass.txt
+          mkdir -p "$RUNNER_TEMP/nuvora-src"
+          unzip -q /tmp/nuvora-source.zip -d "$RUNNER_TEMP/nuvora-src"
+          test -f "$RUNNER_TEMP/nuvora-src/pubspec.yaml"
+          test -f "$RUNNER_TEMP/nuvora-src/ci_secure_build.sh"
+          grep -q '^version: 5.3.0+2060$' "$RUNNER_TEMP/nuvora-src/pubspec.yaml"
+          shred -u /tmp/aes-pass.txt /tmp/key.enc /tmp/payload.enc /tmp/nuvora-private.pem || true
+          rm -f /tmp/key.b64 /tmp/payload.b64 /tmp/nuvora-source.zip
+          echo "NUVORA_SRC=$RUNNER_TEMP/nuvora-src" >> "$GITHUB_ENV"
+
+      - name: Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Flutter 3.44.9
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+
+      - name: Build and validate Nuvora 5.3
+        shell: bash
+        run: bash "$NUVORA_SRC/ci_secure_build.sh"
+
+      - name: Upload AAB
+        uses: actions/upload-artifact@v4
+        with:
+          name: nuvora-5.3.0-aab-play-console-v3
+          retention-days: 2
+          path: |
+            ${{ env.NUVORA_SRC }}/build/app/outputs/bundle/release/app-release.aab
+            /tmp/app-release.aab.sha256
+            /tmp/aab-signature.txt
+            /tmp/RELEASE_INFO.txt
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: nuvora-5.3.0-apk-qa-v3
+          retention-days: 2
+          path: |
+            ${{ env.NUVORA_SRC }}/build/app/outputs/flutter-apk/app-release.apk
+            /tmp/app-release.apk.sha256
+            /tmp/RELEASE_INFO.txt
