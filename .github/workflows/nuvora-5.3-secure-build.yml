@@ -23,8 +23,14 @@ jobs:
           umask 077
           openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -out /tmp/nuvora-private.pem 2>/dev/null
           openssl pkey -in /tmp/nuvora-private.pem -pubout -out /tmp/nuvora-public.pem 2>/dev/null
-          echo "NUVORA_PUBLIC_KEY_B64=$(base64 -w0 /tmp/nuvora-public.pem)"
-          echo "Waiting for encrypted Nuvora source payload..."
+          echo "Ephemeral public key generated. Private key stays only on this runner."
+
+      - name: Publish ephemeral public key
+        uses: actions/upload-artifact@v4
+        with:
+          name: nuvora-ephemeral-public-key
+          retention-days: 1
+          path: /tmp/nuvora-public.pem
 
       - name: Wait for encrypted source payload
         env:
