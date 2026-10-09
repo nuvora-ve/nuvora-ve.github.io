@@ -4,7 +4,7 @@ permalink: /privacidad
 
 # Política de Privacidad de Nuvora
 
-**Última actualización: 7 de octubre de 2026 — versión 5.7.0**
+**Última actualización: 8 de octubre de 2026 — versión 6.1.0**
 
 Nuvora ("la aplicación") es una herramienta de finanzas personales y de gestión para emprendimientos. Esta política explica qué datos utiliza Nuvora, dónde se almacenan, cuándo pueden salir de tu dispositivo, qué servicios de terceros intervienen y qué opciones tienes para controlar o eliminar tu información.
 
@@ -18,13 +18,13 @@ Nuvora puede tratar la información que tú introduces voluntariamente, incluyen
 - **Inventario del hogar y lista de compras:** productos, cantidades actuales y objetivo, unidades, categorías, movimientos de inventario, conteos físicos, historial de compras, precios, códigos de barras, fotografías de productos, notas y datos necesarios para calcular cuánto falta comprar o sugerir reposición.
 - **Modo Emprendimiento:** negocios, ventas, compras, clientes, proveedores, cuentas por cobrar o fiados, inventario, costos, precios, stock, movimientos de inventario, arqueos y cierres de caja, ganancias, márgenes, recibos y demás información operativa del negocio.
 - **Datos del negocio para el catálogo:** nombre del negocio, descripción, número de WhatsApp, moneda, logo, productos, precios, descripciones, disponibilidad o stock y fotografías de productos.
-- **Preferencias de experiencia:** país seleccionado, idioma de la aplicación, moneda principal, modo Personal/Emprendedor/Ambos y otras preferencias de configuración. Estas preferencias sirven para adaptar la experiencia y no modifican por sí solas tus registros financieros.
+- **Preferencias de experiencia:** país seleccionado, moneda principal, modo Personal/Emprendedor/Ambos y otras preferencias de configuración. Estas preferencias sirven para adaptar la experiencia. En Nuvora 6.1, cambiar el país puede actualizar la moneda principal y provocar conversiones de importes que estén expresados en esa moneda principal, según las reglas descritas en esta política.
 - **Datos de cuenta opcionales:** correo electrónico e identificador de usuario generado por Firebase Authentication. Si utilizas Inicio de sesión con Google, Google autentica tu cuenta y comunica a Nuvora los datos necesarios para iniciar sesión. Nuvora no recibe tu contraseña de Google.
 - **Datos de compra:** si compras Premium u otro producto gestionado mediante Google Play, Google procesa el pago. Nuvora recibe la información necesaria para reconocer el estado de la compra o suscripción, pero no recibe los datos completos de tu tarjeta u otro medio de pago.
 - **Texto de registro inteligente:** cuando escribes una instrucción para registrar un movimiento, Nuvora la interpreta dentro de la aplicación para crear el registro correspondiente.
 - **Voz opcional:** si utilizas el dictado, el audio es procesado por el servicio de reconocimiento de voz disponible en Android. Nuvora no mantiene una grabación propia del audio; utiliza el texto resultante para completar la acción solicitada.
 
-Nuvora no solicita acceso a tus contactos ni utiliza tu ubicación para las funciones financieras descritas actualmente. El micrófono se utiliza únicamente cuando activas voluntariamente una función de dictado. La cámara se utiliza únicamente cuando activas una función que la necesita, como escanear un código de barras o tomar una fotografía.
+Nuvora no solicita acceso a tus contactos ni utiliza tu ubicación para las funciones financieras descritas actualmente. El país o región se selecciona como preferencia dentro de la aplicación; Nuvora no necesita utilizar GPS para aplicar la moneda o referencias asociadas. El micrófono se utiliza únicamente cuando activas voluntariamente una función de dictado. La cámara se utiliza únicamente cuando activas una función que la necesita, como escanear un código de barras o tomar una fotografía.
 
 ## 2. Almacenamiento local y sincronización opcional
 
@@ -35,7 +35,7 @@ Nuvora no solicita acceso a tus contactos ni utiliza tu ubicación para las func
 
 ## 3. Inventario del hogar, lista de compras y códigos de barras
 
-Nuvora 5.7 puede utilizar la información del inventario del hogar para mantener una lista de compras dinámica. Por ejemplo, puede comparar la cantidad que deseas mantener con la cantidad registrada actualmente y calcular cuánto falta comprar. Al registrar consumo, reposición, conteos físicos o compras, esos valores pueden actualizarse localmente.
+Nuvora 6.1 puede utilizar la información del inventario del hogar para mantener una lista de compras dinámica. Por ejemplo, puede comparar la cantidad que deseas mantener con la cantidad registrada actualmente y calcular cuánto falta comprar. Al registrar consumo, reposición, conteos físicos o compras, esos valores pueden actualizarse localmente.
 
 La aplicación también puede guardar un código de barras asociado a un producto y utilizar la cámara para leerlo. El acceso a la cámara se solicita para esta función y para tomar fotografías cuando corresponda. Nuvora no utiliza la cámara de forma continua en segundo plano ni la activa sin una acción del usuario.
 
@@ -103,7 +103,7 @@ Según las funciones que utilices, Nuvora puede interactuar con:
 - **Cloudflare Workers y almacenamiento asociado:** procesamiento y alojamiento de información o imágenes publicadas en catálogos cuando corresponde.
 - **GitHub Pages:** alojamiento de la página web de Nuvora, esta política y la interfaz pública del catálogo. GitHub puede generar registros técnicos estándar de acceso web.
 - **WhatsApp / Meta:** envío voluntario de catálogos, pedidos, cobros, recibos u otros mensajes que decidas compartir.
-- **Servicios públicos de tasas y divisas:** consultas necesarias para mostrar tasas de cambio. Estas consultas no necesitan incluir tus movimientos financieros personales.
+- **Servicios públicos de tasas y divisas:** consultas necesarias para mostrar tasas de cambio y calcular equivalencias. Estas consultas no necesitan incluir tus movimientos financieros personales.
 
 Cada proveedor puede tratar determinados datos conforme a sus propias políticas de privacidad y condiciones de servicio.
 
@@ -125,7 +125,9 @@ Nuvora permite administrar datos desde la propia aplicación según las funcione
 
 - puedes exportar información compatible en formatos ofrecidos por la app;
 - puedes eliminar datos locales desde las opciones correspondientes;
+- en Nuvora 6.1, la eliminación masiva de datos locales se presenta dentro de una **Zona de Peligro** y requiere confirmación antes de ejecutarse, debido a que puede ser irreversible;
 - puedes solicitar la eliminación de tu cuenta de autenticación desde la aplicación cuando la función esté disponible;
+- también puedes consultar las instrucciones web de eliminación de cuenta en **https://nuvora-ve.github.io/eliminar-cuenta.html**;
 - los datos sincronizados se conservan mientras exista la cuenta o sean necesarios para prestar la sincronización, salvo eliminación o requisitos legales aplicables.
 
 **Catálogos publicados:** los archivos públicos del catálogo, sus imágenes o copias alojadas en Firebase o Cloudflare pueden permanecer accesibles mientras sigan publicados o mientras exista su URL. Si necesitas retirar datos o imágenes de un catálogo ya publicado y la aplicación no ofrece en ese momento un control suficiente para eliminarlos, puedes solicitar su eliminación escribiendo a **Nuvoraapk@gmail.com** e indicando la información necesaria para identificar el catálogo.
@@ -148,11 +150,22 @@ Los análisis, proyecciones, presupuestos, estimaciones, recomendaciones, indica
 
 No constituyen asesoramiento financiero, contable, fiscal ni legal profesional, ni garantizan resultados futuros.
 
-## 13. Idioma, país y personalización
+## 13. País, moneda principal, tasas y personalización
 
-Nuvora puede guardar el idioma elegido (por ejemplo, español, inglés o portugués), el país seleccionado y el modo de experiencia elegido para presentar la interfaz, monedas y accesos de forma adecuada. Estas preferencias pueden mantenerse entre sesiones en el dispositivo y, cuando una función de sincronización compatible esté activa, podrán formar parte de la configuración asociada a la experiencia del usuario.
+Nuvora 6.1 se presenta en español y puede guardar el país seleccionado, la moneda principal y el modo de experiencia elegido para presentar monedas, tasas, referencias y accesos de forma adecuada. Estas preferencias pueden mantenerse entre sesiones en el dispositivo y, cuando una función de sincronización compatible esté activa, podrán formar parte de la configuración asociada a la experiencia del usuario.
 
-Cambiar el idioma de la interfaz no traduce ni altera automáticamente textos, notas, nombres de productos o registros introducidos previamente por el usuario.
+Al cambiar el país, Nuvora puede actualizar automáticamente la moneda principal asociada a ese país. Si existen importes expresados en la moneda principal anterior, la aplicación puede convertirlos a la nueva moneda principal utilizando tasas de cambio disponibles.
+
+Para proteger la coherencia financiera:
+
+- los datos que estén expresados únicamente en la moneda principal pueden convertirse al cambiar de país o moneda principal;
+- los registros que tengan una **moneda propia explícita** —por ejemplo, una cuenta, deuda o suscripción registrada en USD— conservan su monto y moneda original, y Nuvora calcula su equivalente en la moneda principal cuando corresponde;
+- si falta una tasa válida necesaria para realizar una conversión, Nuvora debe evitar aplicar una conversión ficticia 1:1 y puede cancelar el cambio hasta disponer de una tasa válida;
+- las conversiones y referencias no deben utilizarse para alterar retroactivamente el significado histórico de un registro que conserve su moneda original.
+
+Fuera de Venezuela, Nuvora puede mostrar la moneda local como principal y utilizar el dólar estadounidense (USD) como referencia cuando exista una tasa disponible. Para Venezuela, Nuvora puede mostrar referencias relacionadas con **USD, dólar BCV, USDT y euro (EUR)**, según disponibilidad de las fuentes y tasas compatibles.
+
+Las tasas y equivalencias mostradas por Nuvora son informativas y pueden provenir de servicios públicos o fuentes externas. Pueden existir retrasos, diferencias entre proveedores o periodos sin disponibilidad. Nuvora no garantiza que una tasa mostrada coincida exactamente con la utilizada por un banco, casa de cambio, comercio, plataforma o proveedor financiero específico.
 
 ## 14. Cambios en esta política
 
@@ -167,3 +180,5 @@ Para preguntas, solicitudes de acceso, corrección o eliminación de datos, o pa
 **Correo:** Nuvoraapk@gmail.com
 
 **Política oficial:** https://nuvora-ve.github.io/privacidad
+
+**Eliminación de cuenta:** https://nuvora-ve.github.io/eliminar-cuenta.html
