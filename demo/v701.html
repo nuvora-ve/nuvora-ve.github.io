@@ -1,0 +1,101 @@
+<!doctype html><html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#041124"><title>Nuvora 7.0.1 · Demo</title>
+<link rel="stylesheet" href="./v701.css"></head><body>
+<section id="login" class="login-wrap">
+  <div class="login-card">
+    <div class="brand"><img src="../logo.png" alt="Nuvora"><div><b>NUVORA</b><span>Finanzas personales · Demo 7.0.1</span></div></div>
+    <h1>Bienvenido</h1><p>Explora una demostración interactiva de Nuvora 7.0.1.</p>
+    <form id="loginForm" class="login-form">
+      <label>Usuario<input id="user" autocomplete="username" required></label>
+      <label>Contraseña<input id="pass" type="password" autocomplete="current-password" required></label>
+      <button class="primary" type="submit">Entrar a Nuvora</button><small id="loginError" class="error"></small>
+    </form>
+    <div class="credentials"><b>Acceso demo</b><br>Usuario: <b>nuvora</b><br>Contraseña: <b>Nuvora2026!</b></div>
+  </div>
+</section>
+
+<main id="app" class="app hidden">
+<header class="topbar">
+  <div class="brand appbrand"><img src="../logo.png" alt="Nuvora"><div><b>NUVORA <i>⌄</i></b><span>Finanzas personales</span></div></div>
+  <div class="top-actions"><button data-toast="Buscar en Nuvora">⌕</button><button data-toast="Sin notificaciones">♧<i class="dot"></i></button><button class="avatar" data-toast="Perfil demo">●</button></div>
+</header>
+
+<section id="home" class="page active">
+  <div class="hello"><div><h1>Hola, Juan 👋</h1><h2>Tu dinero, en orden</h2><p>Controla, planifica y alcanza tus metas.</p></div>
+  <div class="date-card"><span>▣</span><div><small id="weekday">Viernes</small><b id="dateText">10 Oct 2026</b></div></div></div>
+
+  <section class="hero-card">
+    <div class="hero-head"><b>Disponible <span>◉</span></b><i>•••</i></div>
+    <div id="available" class="hero-amount">$285.27</div>
+    <div class="ref"><span>🇻🇪</span><b>Ref. Bs BCV: <span id="vesRef">VES249,793.90</span></b></div>
+    <p>Después de compromisos confirmados de los próximos 30 días.</p>
+    <img class="hero-logo" src="../logo.png" alt="">
+    <button class="detail" data-nav="money"><span>▥</span> Ver detalle de mi dinero <b>›</b></button>
+  </section>
+
+  <div class="summary-row">
+    <section class="summary-card today-card"><h3>☀️ Hoy</h3><div class="today-stats">
+      <div><span class="bubble red">↓</span><p>Gastos<b id="todayExpense">$0.00</b><small id="todayExpenseCount">0 mov.</small></p></div>
+      <i></i>
+      <div><span class="bubble green">↑</span><p>Ingresos<b id="todayIncome">$0.00</b><small id="todayIncomeCount">0 mov.</small></p></div>
+    </div></section>
+    <section class="summary-card next-card"><h3>▣ Próximo pago</h3><div class="next-body"><div><b>yisus</b><span>20 Oct 2026</span><strong>$15.00</strong></div><span class="receipt">▤</span><b>›</b></div></section>
+  </div>
+
+  <div class="quick-actions">
+    <button class="qa expense" data-action="expense"><span>−</span><b>+ Gasto</b></button>
+    <button class="qa income" data-action="income"><span>＋</span><b>+ Ingreso</b></button>
+    <button class="qa transfer" data-action="transfer"><span>⇄</span><b>+ Transferencia</b></button>
+    <button class="qa debt" data-action="debt"><span>▣</span><b>+ Pago / Deuda</b></button>
+  </div>
+
+  <div class="tools">
+    <button data-toast="Automatizaciones · demo"><span>ϟ</span><b>Automatizaciones</b></button>
+    <button data-toast="Presupuestos · demo"><span>◔</span><b>Presupuestos</b></button>
+    <button data-toast="Deudas · demo"><span>▰</span><b>Deudas</b></button>
+    <button data-nav="plan"><span>▦</span><b>Calendario</b></button>
+  </div>
+
+  <div class="section-title"><h3><span>⇄</span> Mis monedas</h3><button data-toast="Configuración de monedas">⚙ Configurar</button></div>
+  <div class="fx-grid">
+    <article class="fx yellow"><header>🇻🇪 <b>Bs BCV</b></header><strong id="fxVes">VES249,793.90</strong><svg viewBox="0 0 100 30"><polyline points="0,25 10,24 18,20 27,14 35,17 45,13 55,16 64,9 72,12 82,7 92,9 100,5"/></svg></article>
+    <article class="fx green"><header>₮ <b>USDT</b></header><strong id="fxUsdt">USDT245.37</strong><svg viewBox="0 0 100 30"><polyline points="0,25 10,24 20,21 28,16 36,19 44,14 52,18 60,12 68,16 79,9 90,11 100,4"/></svg></article>
+    <article class="fx blue"><header>🇪🇺 <b>EUR</b></header><strong id="fxEur">EUR254.18</strong><svg viewBox="0 0 100 30"><polyline points="0,25 12,22 22,24 30,19 38,18 46,13 54,17 62,11 70,14 80,8 90,10 100,5"/></svg></article>
+  </div>
+
+  <section class="advice"><span>💡</span><div><b>Consejo Nuvora</b><p id="adviceText">Revisa tus gastos de esta semana y ajusta lo que no sea necesario.</p></div><strong>↗▥</strong></section>
+</section>
+
+<section id="money" class="page subpage"><h1>Mi dinero</h1><p>Cuentas, movimientos y dinero disponible.</p>
+  <section class="panel"><small>Disponible</small><strong id="moneyBalance">$285.27</strong></section>
+  <section class="panel"><h3>Movimientos recientes</h3><div id="txList"></div><div id="txEmpty" class="empty">Aún no hay movimientos registrados.</div></section>
+</section>
+
+<section id="plan" class="page subpage"><h1>Plan</h1><p>Organiza pagos, metas y recordatorios.</p>
+  <div class="plan-grid"><article><span>▦</span><b>Calendario</b><small>Pagos y cobros</small></article><article><span>↗</span><b>Nuvora Futuro</b><small>Proyección 7/30 días</small></article><article><span>◉</span><b>Metas</b><small>Ahorro y objetivos</small></article><article><span>♧</span><b>Recordatorios</b><small>No olvides tus pagos</small></article></div>
+  <section class="panel next-panel"><div><small>Próximo pago</small><b>yisus</b><span>20 Oct 2026</span></div><strong>$15.00</strong></section>
+</section>
+
+<section id="analysis" class="page subpage"><h1>Análisis</h1><p>Una lectura rápida de tus finanzas.</p>
+  <section class="panel"><small>Balance actual</small><strong id="analysisBalance">$285.27</strong><div class="bar"><i id="analysisBar"></i></div><p id="analysisText">Registra movimientos para ver tendencias.</p></section>
+  <section class="panel"><h3>Distribución</h3><p id="analysisCategories">Sin datos suficientes todavía.</p></section>
+</section>
+
+<section id="more" class="page subpage"><h1>Más</h1><p>Herramientas y configuración.</p>
+  <div class="more-list"><button>⇄ <b>Multimoneda y tasas</b></button><button>⌂ <b>Hogar</b></button><button>▣ <b>Emprendimiento</b></button><button>♛ <b>Premium</b></button><button>⚙ <b>Configuración</b></button><button id="logout">↪ <b>Cerrar sesión</b></button></div>
+</section>
+
+<nav class="bottom-nav">
+  <button class="active" data-nav="home">⌂<span>Inicio</span></button><button data-nav="money">▣<span>Mi dinero</span></button><button data-nav="plan">▦<span>Plan</span></button><button data-nav="analysis">▥<span>Análisis</span></button><button data-nav="more">⌘<span>Más</span></button>
+</nav>
+</main>
+
+<div id="modal" class="modal">
+<form id="entryForm" class="sheet"><header><h3 id="sheetTitle">Registrar gasto</h3><button id="closeModal" type="button">×</button></header>
+<div class="form-grid"><label>Tipo<select id="entryType"><option value="expense">Gasto</option><option value="income">Ingreso</option><option value="transfer">Transferencia</option><option value="debt">Pago / Deuda</option></select></label>
+<label>Monto<input id="entryAmount" type="number" min="0.01" step="0.01" required></label>
+<label>Categoría<select id="entryCategory"><option>Comida</option><option>Transporte</option><option>Servicios</option><option>Compras</option><option>Salud</option><option>Entretenimiento</option><option>Sueldo</option><option>Ventas</option><option>Deudas</option><option>Otros</option></select></label>
+<label>Fecha<input id="entryDate" type="date" required></label><label class="full">Descripción<input id="entryNote" maxlength="80"></label><button class="primary full" type="submit">Guardar</button></div>
+</form></div><div id="toast" class="toast"></div>
+<script src="./v701.js"></script></body></html>
