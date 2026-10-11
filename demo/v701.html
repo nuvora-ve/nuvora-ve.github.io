@@ -1,101 +1,141 @@
-<!doctype html><html lang="es"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#041124"><title>Nuvora 7.0.1 · Demo</title>
-<link rel="stylesheet" href="./v701.css"></head><body>
-<section id="login" class="login-wrap">
-  <div class="login-card">
-    <div class="brand"><img src="../logo.png" alt="Nuvora"><div><b>NUVORA</b><span>Finanzas personales · Demo 7.0.1</span></div></div>
-    <h1>Bienvenido</h1><p>Explora una demostración interactiva de Nuvora 7.0.1.</p>
-    <form id="loginForm" class="login-form">
-      <label>Usuario<input id="user" autocomplete="username" required></label>
-      <label>Contraseña<input id="pass" type="password" autocomplete="current-password" required></label>
-      <button class="primary" type="submit">Entrar a Nuvora</button><small id="loginError" class="error"></small>
-    </form>
-    <div class="credentials"><b>Acceso demo</b><br>Usuario: <b>nuvora</b><br>Contraseña: <b>Nuvora2026!</b></div>
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#031020">
+<title>Nuvora 7.0.1 · Demo Startus</title>
+<link rel="stylesheet" href="./v701-a.css">
+<link rel="stylesheet" href="./v701-b.css">
+</head>
+<body>
+<div class="demo-ribbon"><b>MODO DEMO 7.0.1</b> · datos ficticios · nada se guarda · recarga para reiniciar</div>
+
+<section id="login" class="auth">
+ <div class="login-card">
+  <div class="brand"><img src="../logo.png" class="logo-img" alt="Nuvora"><div><div class="brand-name">NUVORA</div><div class="brand-sub">Finanzas y Multimoneda</div></div></div>
+  <h1>Conoce Nuvora 7.0.1</h1>
+  <p>Demo interactiva para explorar el producto sin crear una cuenta real ni registrar información.</p>
+  <form id="loginForm" class="form">
+   <label>Usuario<input id="loginUser" autocomplete="username" placeholder="Usuario" required></label>
+   <label>Contraseña<input id="loginPass" type="password" autocomplete="current-password" placeholder="Contraseña" required></label>
+   <button class="primary" type="submit">Entrar a Nuvora</button>
+   <div id="loginError" class="login-error" aria-live="polite"></div>
+  </form>
+  <div class="login-demo"><b>Acceso de demostración</b><br>Usuario: <strong>nuvora</strong><br>Contraseña: <strong>Nuvora2026!</strong><br><span class="muted">La sesión y todos los cambios existen únicamente mientras esta página permanece abierta.</span></div>
+ </div>
+</section>
+
+<section id="app" class="shell hidden">
+ <header class="topbar">
+  <button id="workspaceBtn" class="brand-btn" type="button">
+   <img src="../logo.png" class="logo-img sm" alt="Nuvora">
+   <div class="brand-copy"><div class="brand-top">NUVORA <span class="chev">⌄</span></div><div id="workspaceLabel" class="brand-workspace">Finanzas personales</div></div>
+  </button>
+  <div class="top-actions">
+   <button class="circle" type="button" data-feature="search" aria-label="Buscar">⌕</button>
+   <div class="bell-wrap"><button class="circle" type="button" data-feature="alerts" aria-label="Avisos">♧</button><span class="dot"></span></div>
+   <button class="circle profile" type="button" data-feature="profile" aria-label="Mi perfil">●</button>
   </div>
-</section>
+ </header>
 
-<main id="app" class="app hidden">
-<header class="topbar">
-  <div class="brand appbrand"><img src="../logo.png" alt="Nuvora"><div><b>NUVORA <i>⌄</i></b><span>Finanzas personales</span></div></div>
-  <div class="top-actions"><button data-toast="Buscar en Nuvora">⌕</button><button data-toast="Sin notificaciones">♧<i class="dot"></i></button><button class="avatar" data-toast="Perfil demo">●</button></div>
-</header>
+ <div id="workspaceMenu" class="workspace-menu hidden">
+  <button type="button" data-workspace="personal"><span class="wi">💳</span><span><b>Finanzas personales</b><br><small class="muted">Tu dinero, presupuestos y planificación</small></span></button>
+  <button type="button" data-workspace="home"><span class="wi">🏠</span><span><b>Hogar</b><br><small class="muted">Inventario y listas de compras</small></span></button>
+  <button type="button" data-workspace="rates"><span class="wi">⇄</span><span><b>Tasas y Multimoneda</b><br><small class="muted">Conversor y referencias</small></span></button>
+  <button type="button" data-workspace="business"><span class="wi">🏪</span><span><b>Emprendimiento</b><br><small class="muted">Ventas, inventario y clientes</small></span></button>
+ </div>
 
-<section id="home" class="page active">
-  <div class="hello"><div><h1>Hola, Juan 👋</h1><h2>Tu dinero, en orden</h2><p>Controla, planifica y alcanza tus metas.</p></div>
-  <div class="date-card"><span>▣</span><div><small id="weekday">Viernes</small><b id="dateText">10 Oct 2026</b></div></div></div>
+ <main>
+  <div id="personalWorkspace" class="workspace-view active">
+   <section id="screen-home" class="screen active">
+    <div class="welcome"><div><div class="hello">Hola, Juan 👋</div><div class="grad-title">Tu dinero, en orden</div><div class="tagline">Controla, planifica y alcanza tus metas.</div></div><div id="dateChip" class="date-chip"><span class="date-ico">▣</span><span></span></div></div>
+    <section class="hero">
+     <div class="hero-grid">
+      <div><div class="hero-label">Disponible <span class="muted">◉</span></div><div id="available" class="available">$285.27</div><div class="ref-line"><span class="flag-ve">🇻🇪</span><span>Ref. Bs BCV: <span id="vesRef">VES 249,793.90</span></span></div><div class="hero-note">Después de compromisos confirmados de los próximos 30 días.</div><button type="button" class="hero-detail" data-feature="availableDetail"><span>▥ &nbsp; Ver detalle de mi dinero</span><span>›</span></button></div>
+      <img src="../logo.png" class="hero-logo" alt="Logo Nuvora">
+     </div>
+    </section>
+    <div class="two">
+     <article class="glass summary-card"><div class="summary-title"><span style="color:#ffd91e">☀</span> Hoy</div><div class="today-metrics"><div class="metric-mini"><span class="metric-orb red">↓</span><span class="metric-copy"><span>Gastos</span><strong id="todayExpense">$18.50</strong><small id="todayExpenseCount">2 mov.</small></span></div><div class="divider-v"></div><div class="metric-mini"><span class="metric-orb green">↑</span><span class="metric-copy"><span>Ingresos</span><strong id="todayIncome">$40.00</strong><small id="todayIncomeCount">1 mov.</small></span></div></div></article>
+     <article class="glass summary-card" data-feature="calendar" style="cursor:pointer"><div class="summary-title"><span class="red">▣</span> Próximo pago</div><div id="nextName" class="next-name">Internet</div><div id="nextDate" class="next-date">20 Oct 2026</div><div id="nextAmount" class="next-amount">$15.00</div></article>
+    </div>
+    <div class="quick4">
+     <button class="quick" type="button" data-action="expense"><span class="quick-box q-exp">−</span><span>+ Gasto</span></button>
+     <button class="quick" type="button" data-action="income"><span class="quick-box q-inc">＋</span><span>+ Ingreso</span></button>
+     <button class="quick" type="button" data-action="transfer"><span class="quick-box q-tra">⇄</span><span>+ Transferencia</span></button>
+     <button class="quick" type="button" data-feature="debts"><span class="quick-box q-deb">▣</span><span>+ Pago / Deuda</span></button>
+    </div>
+    <div class="tool4">
+     <button class="tool" type="button" data-feature="automations"><span class="ti">ϟ</span><span>Automatizaciones</span></button>
+     <button class="tool" type="button" data-feature="budgets"><span class="ti">◔</span><span>Presupuestos</span></button>
+     <button class="tool" type="button" data-feature="debts"><span class="ti" style="color:#c770ff">▰</span><span>Deudas</span></button>
+     <button class="tool" type="button" data-feature="calendar"><span class="ti">▣</span><span>Calendario</span></button>
+    </div>
+    <div class="section-line"><h3><span class="cyan">⇄</span> Mis monedas</h3><button class="link" type="button" data-workspace="rates">⚙ Configurar</button></div>
+    <div class="fx-grid">
+     <article class="fx yellow"><div class="fx-head"><span>🇻🇪</span><span>Bs BCV</span></div><div id="fxVes" class="fx-val">VES 249,793.90</div><svg class="spark" viewBox="0 0 120 30"><polyline points="0,26 15,25 28,20 38,24 51,16 63,20 76,13 88,17 100,8 120,10"/></svg></article>
+     <article class="fx green"><div class="fx-head"><span>◉</span><span>USDT</span></div><div id="fxUsdt" class="fx-val">USDT 245.37</div><svg class="spark" viewBox="0 0 120 30"><polyline points="0,25 18,24 31,15 42,20 56,12 66,18 82,9 97,14 120,5"/></svg></article>
+     <article class="fx blue"><div class="fx-head"><span>🇪🇺</span><span>EUR</span></div><div id="fxEur" class="fx-val">EUR 254.18</div><svg class="spark" viewBox="0 0 120 30"><polyline points="0,25 17,20 31,23 47,16 59,19 74,10 88,15 105,7 120,10"/></svg></article>
+    </div>
+    <article class="advice" data-feature="analysis" style="cursor:pointer"><div class="bulb">💡</div><div><strong>Consejo Nuvora</strong><p>Revisa tus gastos de esta semana y ajusta lo que no sea necesario.</p></div><div class="advice-art"><i style="height:14px"></i><i style="height:23px"></i><i style="height:32px"></i><i style="height:42px"></i><span class="cyan" style="font-size:28px">↗</span></div></article>
+   </section>
 
-  <section class="hero-card">
-    <div class="hero-head"><b>Disponible <span>◉</span></b><i>•••</i></div>
-    <div id="available" class="hero-amount">$285.27</div>
-    <div class="ref"><span>🇻🇪</span><b>Ref. Bs BCV: <span id="vesRef">VES249,793.90</span></b></div>
-    <p>Después de compromisos confirmados de los próximos 30 días.</p>
-    <img class="hero-logo" src="../logo.png" alt="">
-    <button class="detail" data-nav="money"><span>▥</span> Ver detalle de mi dinero <b>›</b></button>
-  </section>
+   <section id="screen-money" class="screen">
+    <div class="page-title">Mi dinero</div><div class="page-sub">Lo esencial, sin listas interminables.</div>
+    <div id="moneyTiles" class="tiles"></div>
+   </section>
 
-  <div class="summary-row">
-    <section class="summary-card today-card"><h3>☀️ Hoy</h3><div class="today-stats">
-      <div><span class="bubble red">↓</span><p>Gastos<b id="todayExpense">$0.00</b><small id="todayExpenseCount">0 mov.</small></p></div>
-      <i></i>
-      <div><span class="bubble green">↑</span><p>Ingresos<b id="todayIncome">$0.00</b><small id="todayIncomeCount">0 mov.</small></p></div>
-    </div></section>
-    <section class="summary-card next-card"><h3>▣ Próximo pago</h3><div class="next-body"><div><b>yisus</b><span>20 Oct 2026</span><strong>$15.00</strong></div><span class="receipt">▤</span><b>›</b></div></section>
+   <section id="screen-plan" class="screen">
+    <div class="page-title">Plan</div><div class="page-sub">Lo próximo, tus metas y el futuro de tu dinero.</div>
+    <div class="tiles">
+     <button class="feature-tile" data-feature="calendar"><span class="fi">▣</span><b>Calendario</b><small>Pagos, cobros y eventos</small></button>
+     <button class="feature-tile" data-feature="future"><span class="fi">↗</span><b>Nuvora Futuro</b><small>Proyección 7/30 días</small></button>
+     <button class="feature-tile" data-feature="goals"><span class="fi">◒</span><b>Metas</b><small>Ahorro y fondos</small></button>
+     <button class="feature-tile" data-feature="reminders"><span class="fi">♧</span><b>Recordatorios</b><small>No olvides nada</small></button>
+    </div>
+    <div class="panel"><h3>Próximos 7 días</h3><div id="planEvents" class="list"></div></div>
+    <div class="panel"><h3>Dinero realmente disponible</h3><div class="stat-grid"><div class="stat"><small>Total en cuentas</small><strong id="planTotal">$415.27</strong></div><div class="stat"><small>Comprometido</small><strong class="red" id="planCommitted">$85.00</strong></div><div class="stat"><small>Reservado</small><strong class="purple" id="planReserved">$45.00</strong></div></div></div>
+   </section>
+
+   <section id="screen-analysis" class="screen">
+    <div class="page-title">Análisis</div><div class="page-sub">Entiende qué pasó y qué conviene hacer ahora.</div>
+    <div class="panel"><div class="row between"><div><small class="cyan">RESUMEN DEL MES</small><div style="font-size:22px;font-weight:950;margin-top:5px">Gastaste <span id="analysisExpense">$212.40</span></div><div class="muted tiny">↓ 6% vs. el mes anterior</div></div><div style="font-size:32px;color:#19dfff">▥</div></div></div>
+    <div class="chips" style="margin-top:10px"><button class="chip active" data-analysis="expenses">Gastos</button><button class="chip" data-analysis="income">Ingresos</button><button class="chip" data-analysis="merchants">Comercios</button></div>
+    <div id="analysisBars" class="panel"></div>
+    <div class="panel"><h3>Tendencia de 4 meses</h3><div class="chart"><i style="height:62%"></i><i style="height:78%"></i><i style="height:70%"></i><i style="height:58%"></i></div><div class="chart-labels"><span>Jul</span><span>Ago</span><span>Sep</span><span>Oct</span></div></div>
+    <div class="panel"><h3>Señales inteligentes</h3><div class="list"><div class="list-row"><span class="list-icon">✦</span><span class="list-main"><b>Gasto bajo control</b><small>Comida bajó 8% frente al mes anterior.</small></span><span class="green">Bien</span></div><div class="list-row"><span class="list-icon">⚠</span><span class="list-main"><b>Suscripciones</b><small>Tienes 3 cargos recurrentes esta semana.</small></span><span class="gold">Revisar</span></div></div></div>
+   </section>
+
+   <section id="screen-more" class="screen">
+    <div class="page-title">Más</div><div class="page-sub">Herramientas secundarias y configuración.</div><div id="moreTiles" class="tiles"></div>
+   </section>
   </div>
 
-  <div class="quick-actions">
-    <button class="qa expense" data-action="expense"><span>−</span><b>+ Gasto</b></button>
-    <button class="qa income" data-action="income"><span>＋</span><b>+ Ingreso</b></button>
-    <button class="qa transfer" data-action="transfer"><span>⇄</span><b>+ Transferencia</b></button>
-    <button class="qa debt" data-action="debt"><span>▣</span><b>+ Pago / Deuda</b></button>
-  </div>
+  <div id="homeWorkspace" class="workspace-view"></div>
+  <div id="ratesWorkspace" class="workspace-view"></div>
+  <div id="businessWorkspace" class="workspace-view"></div>
+  <div id="featureView" class="workspace-view"></div>
+ </main>
 
-  <div class="tools">
-    <button data-toast="Automatizaciones · demo"><span>ϟ</span><b>Automatizaciones</b></button>
-    <button data-toast="Presupuestos · demo"><span>◔</span><b>Presupuestos</b></button>
-    <button data-toast="Deudas · demo"><span>▰</span><b>Deudas</b></button>
-    <button data-nav="plan"><span>▦</span><b>Calendario</b></button>
-  </div>
-
-  <div class="section-title"><h3><span>⇄</span> Mis monedas</h3><button data-toast="Configuración de monedas">⚙ Configurar</button></div>
-  <div class="fx-grid">
-    <article class="fx yellow"><header>🇻🇪 <b>Bs BCV</b></header><strong id="fxVes">VES249,793.90</strong><svg viewBox="0 0 100 30"><polyline points="0,25 10,24 18,20 27,14 35,17 45,13 55,16 64,9 72,12 82,7 92,9 100,5"/></svg></article>
-    <article class="fx green"><header>₮ <b>USDT</b></header><strong id="fxUsdt">USDT245.37</strong><svg viewBox="0 0 100 30"><polyline points="0,25 10,24 20,21 28,16 36,19 44,14 52,18 60,12 68,16 79,9 90,11 100,4"/></svg></article>
-    <article class="fx blue"><header>🇪🇺 <b>EUR</b></header><strong id="fxEur">EUR254.18</strong><svg viewBox="0 0 100 30"><polyline points="0,25 12,22 22,24 30,19 38,18 46,13 54,17 62,11 70,14 80,8 90,10 100,5"/></svg></article>
-  </div>
-
-  <section class="advice"><span>💡</span><div><b>Consejo Nuvora</b><p id="adviceText">Revisa tus gastos de esta semana y ajusta lo que no sea necesario.</p></div><strong>↗▥</strong></section>
+ <nav id="bottomNav" class="bottom-nav">
+  <button class="navbtn active" data-screen="home" type="button">⌂<span>Inicio</span></button>
+  <button class="navbtn" data-screen="money" type="button">▰<span>Mi dinero</span></button>
+  <button class="navbtn" data-screen="plan" type="button">▣<span>Plan</span></button>
+  <button class="navbtn" data-screen="analysis" type="button">▥<span>Análisis</span></button>
+  <button class="navbtn" data-screen="more" type="button">⠿<span>Más</span></button>
+ </nav>
 </section>
 
-<section id="money" class="page subpage"><h1>Mi dinero</h1><p>Cuentas, movimientos y dinero disponible.</p>
-  <section class="panel"><small>Disponible</small><strong id="moneyBalance">$285.27</strong></section>
-  <section class="panel"><h3>Movimientos recientes</h3><div id="txList"></div><div id="txEmpty" class="empty">Aún no hay movimientos registrados.</div></section>
-</section>
+<div id="overlay" class="overlay hidden"><div class="sheet"><div class="sheet-title"><h3 id="sheetTitle">Nuvora</h3><button id="closeSheet" class="x" type="button">×</button></div><div id="sheetBody"></div></div></div>
 
-<section id="plan" class="page subpage"><h1>Plan</h1><p>Organiza pagos, metas y recordatorios.</p>
-  <div class="plan-grid"><article><span>▦</span><b>Calendario</b><small>Pagos y cobros</small></article><article><span>↗</span><b>Nuvora Futuro</b><small>Proyección 7/30 días</small></article><article><span>◉</span><b>Metas</b><small>Ahorro y objetivos</small></article><article><span>♧</span><b>Recordatorios</b><small>No olvides tus pagos</small></article></div>
-  <section class="panel next-panel"><div><small>Próximo pago</small><b>yisus</b><span>20 Oct 2026</span></div><strong>$15.00</strong></section>
-</section>
-
-<section id="analysis" class="page subpage"><h1>Análisis</h1><p>Una lectura rápida de tus finanzas.</p>
-  <section class="panel"><small>Balance actual</small><strong id="analysisBalance">$285.27</strong><div class="bar"><i id="analysisBar"></i></div><p id="analysisText">Registra movimientos para ver tendencias.</p></section>
-  <section class="panel"><h3>Distribución</h3><p id="analysisCategories">Sin datos suficientes todavía.</p></section>
-</section>
-
-<section id="more" class="page subpage"><h1>Más</h1><p>Herramientas y configuración.</p>
-  <div class="more-list"><button>⇄ <b>Multimoneda y tasas</b></button><button>⌂ <b>Hogar</b></button><button>▣ <b>Emprendimiento</b></button><button>♛ <b>Premium</b></button><button>⚙ <b>Configuración</b></button><button id="logout">↪ <b>Cerrar sesión</b></button></div>
-</section>
-
-<nav class="bottom-nav">
-  <button class="active" data-nav="home">⌂<span>Inicio</span></button><button data-nav="money">▣<span>Mi dinero</span></button><button data-nav="plan">▦<span>Plan</span></button><button data-nav="analysis">▥<span>Análisis</span></button><button data-nav="more">⌘<span>Más</span></button>
-</nav>
-</main>
-
-<div id="modal" class="modal">
-<form id="entryForm" class="sheet"><header><h3 id="sheetTitle">Registrar gasto</h3><button id="closeModal" type="button">×</button></header>
-<div class="form-grid"><label>Tipo<select id="entryType"><option value="expense">Gasto</option><option value="income">Ingreso</option><option value="transfer">Transferencia</option><option value="debt">Pago / Deuda</option></select></label>
-<label>Monto<input id="entryAmount" type="number" min="0.01" step="0.01" required></label>
-<label>Categoría<select id="entryCategory"><option>Comida</option><option>Transporte</option><option>Servicios</option><option>Compras</option><option>Salud</option><option>Entretenimiento</option><option>Sueldo</option><option>Ventas</option><option>Deudas</option><option>Otros</option></select></label>
-<label>Fecha<input id="entryDate" type="date" required></label><label class="full">Descripción<input id="entryNote" maxlength="80"></label><button class="primary full" type="submit">Guardar</button></div>
-</form></div><div id="toast" class="toast"></div>
-<script src="./v701.js"></script></body></html>
+<script src="./v701-1.js"></script>
+<script src="./v701-2.js"></script>
+<script src="./v701-3.js"></script>
+<script src="./v701-4.js"></script>
+<script src="./v701-5.js"></script>
+<script src="./v701-6.js"></script>
+<script src="./v701-7.js"></script>
+<script src="./v701-8.js"></script>
+</body>
+</html>
