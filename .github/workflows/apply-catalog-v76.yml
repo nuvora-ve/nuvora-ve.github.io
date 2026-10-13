@@ -1,0 +1,35 @@
+name: Apply catalog web v7.6
+on:
+  push:
+    branches: [main]
+    paths:
+      - tool/apply_catalog_v76.py
+      - .github/workflows/apply-catalog-v76.yml
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Upgrade catalog
+        run: python3 tool/apply_catalog_v76.py
+      - name: Validate HTML contract
+        run: |
+          set -euo pipefail
+          grep -q 'p.fotos' catalogo.html
+          grep -q 'precio_bs' catalogo.html
+          grep -q 'data.tasa_bcv' catalogo.html
+          grep -q 'gallery-count' catalogo.html
+          grep -q 'og:image' catalogo.html
+          git diff --check
+      - name: Commit public catalog
+        run: |
+          rm -f tool/apply_catalog_v76.py .github/workflows/apply-catalog-v76.yml
+          git config user.name 'juanplateado1224444-source'
+          git config user.email 'juanplateado1224444@gmail.com'
+          git add -A
+          git commit -m 'feat(catalog): galería de producto + precio USD/Bs + enlaces de detalle'
+          git push origin HEAD:main
