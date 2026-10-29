@@ -4,7 +4,7 @@ permalink: /privacidad
 
 # Política de Privacidad de Nuvora
 
-**Última actualización: 27 de octubre de 2026 — versión 7.7.7**
+**Última actualización: 29 de octubre de 2026**
 
 Nuvora ("la aplicación") es una herramienta de finanzas personales, multimoneda, organización del hogar, planificación, productividad y gestión para emprendimientos. Esta política explica qué información puede utilizar Nuvora, para qué se utiliza, cuándo puede transmitirse a servicios externos, cómo funciona el tratamiento asociado a Nuvi y qué controles tiene el usuario.
 
@@ -193,6 +193,22 @@ Las compras, suscripciones o productos Premium ofrecidos a través de Google Pla
 
 Para evitar fraude y aplicar correctamente límites, pruebas y beneficios, Nuvora puede verificar del lado del servidor información como UID, producto adquirido, estado de compra, vigencia, prueba activa o derecho vitalicio. Estos metadatos pueden procesarse mediante infraestructura de Cloudflare y las bases de datos utilizadas por Nuvora para Premium y Nuvi.
 
+### Compras y funciones Premium asistidas por Nuvi
+
+Nuvi puede informar al usuario sobre funciones disponibles en Nuvora, explicar diferencias entre modalidades Gratis y Premium o dirigir al usuario hacia los flujos correspondientes de la aplicación.
+
+Nuvi no procesa directamente pagos, no recibe números completos de tarjetas bancarias y no debe utilizarse para eludir los mecanismos de compra establecidos por la plataforma. Cuando una función digital de Nuvora deba adquirirse mediante Google Play, la operación correspondiente se procesa mediante Google Play Billing conforme a las reglas aplicables de Google Play. Nuvi únicamente puede asistir al usuario o dirigirlo al flujo oficial disponible en Nuvora.
+
+### Transparencia y seguridad de las respuestas de Nuvi
+
+Las respuestas de Nuvi son generadas o interpretadas mediante sistemas de inteligencia artificial y pueden contener errores, información incompleta o interpretaciones incorrectas. El usuario debe revisar especialmente cualquier monto, moneda, cuenta, fecha, categoría, destinatario u otra información relevante antes de confirmar una modificación de sus datos.
+
+Nuvora puede aplicar medidas técnicas, instrucciones de seguridad, restricciones y otros mecanismos destinados a reducir la generación de contenido ilegal, fraudulento, peligroso, abusivo o incompatible con las políticas aplicables.
+
+Cuando Nuvora proporcione mecanismos para informar sobre una respuesta problemática de Nuvi, los reportes podrán utilizarse para investigar incidencias y mejorar los mecanismos de seguridad y funcionamiento del servicio. Estos reportes no autorizan a Nuvora a vender el contenido financiero privado del usuario ni a utilizarlo con fines publicitarios.
+
+Nuvi es una herramienta de asistencia y organización. Sus respuestas, análisis, estimaciones y proyecciones no constituyen asesoramiento financiero, contable, fiscal, legal ni de inversión profesional.
+
 ## 16. Compartir contenido con otras aplicaciones
 
 Cuando decides compartir un catálogo, pedido, cobro, recibo, reporte u otro contenido, Android puede abrir una aplicación externa elegida por ti, como WhatsApp. La información deja de estar bajo control exclusivo de Nuvora cuando continúas el envío en el servicio externo y queda sujeta también a las políticas de dicho proveedor.
@@ -266,6 +282,16 @@ Los catálogos o archivos que hayan sido publicados pueden requerir eliminación
 
 La eliminación de una Cuenta Nuvora no elimina automáticamente registros que Google deba conservar sobre compras realizadas mediante Google Play.
 
+### Eliminación efectiva de la Cuenta Nuvora
+
+Cuando el usuario solicita válidamente la eliminación de su Cuenta Nuvora, la solicitud corresponde a una eliminación de la cuenta y de los datos asociados bajo control de Nuvora, y no simplemente a una suspensión, desactivación temporal o congelación de la cuenta.
+
+Nuvora eliminará o desvinculará, según corresponda, los datos asociados a la cuenta que se encuentren bajo su control y que no deban conservarse por una razón legítima. Esto puede incluir la cuenta o identificador de autenticación, datos sincronizados de finanzas personales, planificación, Hogar y Emprendimiento, datos de clientes y proveedores almacenados por el usuario, catálogos y contenido publicado asociado a la cuenta, archivos e imágenes bajo control de Nuvora y metadatos operativos vinculados directamente con el servicio cuando no exista una razón legítima para conservarlos.
+
+Determinados registros pueden conservarse cuando sea necesario por motivos legítimos, incluyendo seguridad, prevención del fraude, resolución de incidencias, cumplimiento de obligaciones legales o registros que deban conservar proveedores externos conforme a sus propias obligaciones.
+
+La eliminación de la Cuenta Nuvora no implica necesariamente la eliminación de registros que Google deba conservar relacionados con operaciones realizadas mediante Google Play. El usuario puede iniciar el proceso mediante la opción disponible dentro de Nuvora o mediante el recurso web de eliminación de cuenta publicado por Nuvora.
+
 ## 22. Derechos y control del usuario
 
 Según las funciones disponibles y la legislación aplicable, puedes:
@@ -304,7 +330,15 @@ Esta política puede actualizarse cuando cambien las funciones, proveedores, req
 
 Si un cambio modifica de manera material el tratamiento de datos personales o sensibles, Nuvora podrá mostrar avisos adicionales o solicitar consentimiento cuando corresponda.
 
-## 27. Contacto
+## 27. Coherencia con Seguridad de los datos de Google Play
+
+Nuvora procura mantener las declaraciones realizadas en la sección **Seguridad de los datos** de Google Play coherentes con las prácticas descritas en esta Política de Privacidad.
+
+La presente política describe de forma amplia cómo las distintas funciones de Nuvora pueden acceder, utilizar, almacenar, sincronizar, transmitir o compartir información cuando el usuario decide utilizarlas. La disponibilidad de una función no significa necesariamente que todos los datos descritos sean recopilados de todos los usuarios: el tratamiento depende de las funciones que cada usuario active o utilice, los permisos que conceda y los servicios que decida utilizar.
+
+Nuvora no declara ni solicita intencionalmente acceso a categorías de datos o permisos sensibles que no sean necesarios para una función real de la aplicación.
+
+## 28. Contacto
 
 **Correo de soporte y privacidad:** nuvoraapk@gmail.com  
 **Sitio oficial:** https://www.nuvorave.com  
